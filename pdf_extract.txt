@@ -1,0 +1,683 @@
+=== PAGE 1 ===
+Ringkasan Perbaikan
+Perubahan Strategis yang Dilakukan
+Kebutuhan CDC Fakultas IT
+Posisi Kerja & Tools yang Dibutuhkan
+1Software Engineering
+JavaScript, Python, Java, React, Next.js, Laravel, Node.js,
+GitHub, Docker2Web & CMS Development
+WordPress, Elementor, HTML, CSS, JavaScript3DevOps & Infrastructure
+Docker, Kubernetes, Jenkins, GitHub Actions, AWS, GCP,
+Azure, Terraform
+4Data & Analytics
+SQL, Excel, Python (Pandas), Power BI, Tableau5QA & Testing
+Test case tools, Selenium6System & Business Analyst
+Draw.io, Lucidchart, Notion, Confluence
+7UI/UX & Product Design
+Figma, Adobe XD, Maze8Product Management
+Notion, Jira, Google Docs9IT Security & Cybersecurity
+Kali Linux, Nmap, Wireshark
+10IoT
+Arduino, ESP32, MQTT11Game Development
+Unity, Unreal Engine12IT Support & Compliance
+OS knowledge, Basic networking tools
+13Solution Engineer
+Postman (API), CRM/ERP tools
+SEMESTER 120 SKS • Fondasi Data Science & Kompetensi Dasar
+NOMATA KULIAH LEARNING OUTCOMES LEARNING TOOLS
+1Foundations of Data
+Science
+3 SKSPythonJupyter Notebook
+Google ColabPandasNumPy
+2Design Thinking
+2 SKSFigmaMiroDraw.ioNotion
+3Discrete Mathematics
+3 SKSPythonMATLABLaTeX
+4Human-Computer
+Interaction
+3 SKSFigmaAdobe XDMaze
+InVision
+5Algorithms
+3 SKSPythonC++LeetCode
+GitHub
+6Mathematical and
+Statistical Foundations
+2 SKSPythonRExcelSPSS
+7Networks
+2 SKSWiresharkCisco Packet Tracer
+Nmap
+8Differential Calculus
+2 SKSPythonMATLAB
+Wolfram AlphaGeoGebraPerbaikan & Penyelarasan Learning Outcomes
+Program Studi Data Science -- Diselaraskan dengan Kebutuhan Industri & Career Development Center (CDC)
+8 Semester + 2 Short Semester152 SKS Total3 Concentration TracksMBKM Semester 6 & 7CDC-Aligned Tools
+Merestrukturisasi learning outcomes agar berbasis kompetensi terukur (menggunakan kata kerja Bloom's Taxonomy: Apply, Implement, Design, Evaluate).✦Memperkuat mata kuliah semester awal dengan proyek praktik langsung agar mahasiswa memiliki portofolio dan siap kerja.✦Menambahkan jalur konsentrasi di Semester 5 untuk spesialisasi: Data Engineering, AI/ML, Business Intelligence.✦Mengintegrasikan program MBKM di Semester 6 dan 7 untuk pengalaman industri langsung.✦Menambahkan output terukur per semester: mini-project, portofolio, capstone project, dan publikasi ilmiah.✦Menyelaraskan kurikulum dengan kebutuhan CDC Fakultas IT sehingga lulusan siap memasuki pasar kerja.✦Menambahkan Learning Tools yang relevan dengan industri pada setiap mata kuliah, diselaraskan dengan kebutuhan CDC.✦
+Apply fundamental concepts of data science to real-world problems 1.
+Implement basic statistical methods for data analysis 2.
+Develop data processing pipelines 3.
+Interpret results of data analysis for decision support 4.
+Evaluate data sources for quality and relevance 5.
+Apply design thinking methodology to identify and solve problems 1.
+Demonstrate empathy in understanding user needs and requirements 2.
+Generate innovative solutions through ideation techniques 3.
+Develop and test prototypes iteratively 4.
+Evaluate solutions based on user feedback and technical feasibility 5.
+Apply mathematical logic and proof techniques in problem-solving 1.
+Analyze combinatorial problems using appropriate counting techniques 2.
+Understand set theory and its applications in computing 3.
+Model problems using graph theory and relations 4.
+Apply discrete mathematical concepts to computational problems 5.
+Apply principles of user-centered design in interface development 1.
+Analyze user requirements and translate them into interface specifications 2.
+Design interfaces that optimize usability and user experience 3.
+Evaluate interfaces using appropriate testing methodologies 4.
+Apply accessibility standards in interface design 5.
+Analyze algorithmic problems and develop efficient solutions 1.
+Implement classic algorithms for sorting, searching, and graph traversal 2.
+Apply algorithm design techniques to solve computational problems 3.
+Analyze the time and space complexity of algorithms 4.
+Evaluate and optimize algorithmic solutions 5.
+Apply mathematical concepts essential for data science 1.
+Implement statistical tests for hypothesis testing 2.
+Apply probability theory in modeling uncertainty 3.
+Interpret statistical results in context 4.
+Develop statistical models for data analysis 5.
+Explain fundamental network concepts and architectures 1.
+Apply network protocols for data science applications 2.
+Analyze network data and traffic patterns 3.
+Implement basic network algorithms and models 4.
+Evaluate network performance and reliability 5.
+Apply differentiation techniques to mathematical functions 1.
+Analyze rates of change and optimization problems 2.
+Implement numerical differentiation algorithms 3.
+Apply calculus concepts to data science problems 4.
+Interpret derivatives in the context of data analysis 5.4/30/26, 4:02 PM Perbaikan & Penyelarasan Learning Outcomes — Program Studi Data Science
+https://lo.adambhuana.my.id 1/6
+
+=== PAGE 2 ===
+SEMESTER 220 SKS • Pemrograman Lanjut, Database & Data Wrangling
+NOMATA KULIAH LEARNING OUTCOMES LEARNING TOOLS
+1Object-Oriented
+Programming
+3 SKSPythonJavaGitHub/GitLab
+VS CodeUML Tools
+2Database Systems
+3 SKSMySQLPostgreSQLMongoDB
+SQLDBeaver
+3Data Structures
+3 SKSPythonJavaC++GitHub
+4Web Client Development
+3 SKSHTMLCSSJavaScript
+ReactBootstrapVS Code
+5Statistical Thinking
+3 SKSPythonRSPSSPandas
+Matplotlib
+6Communication Protocols
+3 SKSWiresharkPostmancURL
+MQTT
+7Data Wrangling
+2 SKSPythonPandasNumPy
+OpenRefineExcel
+SHORT SEMESTER 19 SKS • Independent Study / Remedial / Elective
+NOMATA KULIAH KETERANGAN LEARNING TOOLS
+1Independent Study
+Project
+9 SKSProyek mandiri berbasis data science Sesuai TopikGitHubPython
+2Remedial Course
+9 SKSMata kuliah remedial (bila diperlukan) Sesuai MK
+3Elective Course
+9 SKSMata kuliah pilihan sesuai minat Sesuai MK
+SEMESTER 318 SKS • Full-Stack Development, Visualisasi & Metode Numerik
+NOMATA KULIAH LEARNING OUTCOMES LEARNING TOOLS
+1Web Application
+Development
+3 SKSNode.jsReactNext.js
+LaravelExpress.jsGitHub
+2Advanced Database
+Systems
+3 SKSPostgreSQLMongoDBRedis
+CassandraDBeaver
+3Stochastic Modeling
+2 SKSPythonRSciPySimPy
+4Numerical Methods
+2 SKSPythonMATLABNumPy
+SciPy
+5Advanced Computational
+Mathematics
+2 SKSPythonMATLAB
+Wolfram AlphaLaTeX
+6Data Visualization
+3 SKSTableauPower BID3.js
+MatplotlibSeabornPlotly
+7Optimization Methods
+3 SKSPythonSciPyPuLP
+MATLABGurobi
+SEMESTER 418 SKS • Text Mining, Big Data & Advanced AnalyticsApply object-oriented principles (encapsulation, inheritance, polymorphism) 1.
+Design programs using class hierarchies and relationships 2.
+Implement object-oriented solutions to complex problems 3.
+Apply design patterns in software development 4.
+Evaluate and refactor object-oriented code for improved maintainability 5.
+Design database schemas using entity-relationship modeling 1.
+Implement relational and non-relational database solutions 2.
+Apply SQL and query optimization techniques 3.
+Develop data access layers for applications 4.
+Evaluate database performance and scalability 5.
+Implement fundamental data structures for efficient data organization 1.
+Apply appropriate data structures for different problem domains 2.
+Analyze the time and space complexity of data structure operations 3.
+Implement custom data structures for specific requirements 4.
+Evaluate data structure selection impact on algorithm performance 5.
+Develop responsive web interfaces using HTML, CSS, and JavaScript 1.
+Apply front-end frameworks to build interactive web applications 2.
+Implement client-side validation and error handling 3.
+Integrate web interfaces with backend services via APIs 4.
+Optimize web applications for performance and accessibility 5.
+Apply statistical inference techniques to draw conclusions from data 1.
+Design experiments and observational studies 2.
+Implement resampling methods for uncertainty estimation 3.
+Interpret confidence intervals and hypothesis tests 4.
+Evaluate statistical models for goodness of fit 5.
+Apply communication protocol principles for data transmission 1.
+Implement data encoding and decoding techniques 2.
+Analyze protocol performance and reliability 3.
+Design communication protocols for specific applications 4.
+Evaluate protocol security and efficiency 5.
+Clean and preprocess raw data for analysis 1.
+Transform data into appropriate formats for different analyses 2.
+Handle missing data using appropriate techniques 3.
+Integrate data from multiple sources 4.
+Automate data preparation workflows 5.
+Design and implement full-stack web applications using modern frameworks and technologies 1.
+Apply MVC architecture principles and design patterns in web development 2.
+Implement authentication, authorization, and security measures in web applications 3.
+Develop RESTful web services and APIs for client-server communication 4.
+Deploy and maintain web applications in production environments 5.
+Design and implement advanced database solutions for complex data management requirements 1.
+Apply optimization techniques for database performance in high-volume environments 2.
+Implement transaction management and concurrency control mechanisms 3.
+Design and develop NoSQL database solutions for specific use cases 4.
+Evaluate database architectures for scalability, reliability, and security 5.
+Apply probability theory to model uncertainty in real-world systems 1.
+Develop stochastic processes to represent dynamic random phenomena 2.
+Implement Markov chains and queuing theory models for system analysis 3.
+Analyze time series data using appropriate stochastic models 4.
+Evaluate model accuracy and make predictions with confidence intervals 5.
+Implement numerical solutions for mathematical problems using computational techniques 1.
+Apply numerical methods for solving differential equations and linear systems 2.
+Analyze algorithm stability, convergence, and error propagation 3.
+Develop efficient implementations of numerical algorithms 4.
+Evaluate and select appropriate numerical methods for specific problem domains 5.
+Apply advanced mathematical techniques to solve computational problems 1.
+Implement algorithms for numerical optimization and approximation 2.
+Analyze mathematical models using computational approaches 3.
+Develop solutions for complex mathematical problems using appropriate software tools 4.
+Evaluate computational methods for efficiency, accuracy, and applicability 5.
+Design effective visual representations of complex data sets 1.
+Implement interactive data visualizations using modern visualization libraries and tools 2.
+Apply perceptual and cognitive principles to optimize information communication 3.
+Develop dashboards and visual analytics solutions for different audiences 4.
+Evaluate visualizations for effectiveness, accuracy, and ethical considerations 5.
+Formulate optimization problems from real-world scenarios 1.
+Apply linear, nonlinear, and integer programming techniques to solve optimization problems 2.
+Implement metaheuristic algorithms for complex optimization challenges 3.
+Analyze sensitivity and robustness of optimization solutions 4.
+Evaluate optimization methods for computational efficiency and solution quality 5.4/30/26, 4:02 PM Perbaikan & Penyelarasan Learning Outcomes — Program Studi Data Science
+https://lo.adambhuana.my.id 2/6
+
+=== PAGE 3 ===
+NOMATA KULIAH LEARNING OUTCOMES LEARNING TOOLS
+1Text Mining
+3 SKSPythonNLTKspaCy
+Hugging FaceScikit-learn
+2Data Warehousing and
+Mining
+3 SKSSQLPentahoApache Spark
+Power BITableau
+3Technical / Professional
+Writing
+2 SKSLaTeXNotionConfluence
+Google DocsMarkdown
+4Mobile Computing
+3 SKSFlutterReact Native
+Android StudioFirebase
+5Big Data Analytics
+2 SKSApache SparkHadoopKafka
+PythonDatabricks
+6Advanced Methods for
+Data Analytics
+3 SKSPythonScikit-learn
+TensorFlowXGBoostMLflow
+7Data Privacy and Security
+2 SKSKali LinuxWiresharkPython
+OWASP ZAPNmap
+SHORT SEMESTER 29 SKS • Independent Study / Remedial / Elective
+NOMATA KULIAH KETERANGAN LEARNING TOOLS
+1Independent Study
+Project
+9 SKSProyek mandiri spesialisasi data science Sesuai TopikGitHubPython
+2Remedial Course
+9 SKSMata kuliah remedial (bila diperlukan) Sesuai MK
+3Elective Course
+9 SKSMata kuliah pilihan sesuai minat Sesuai MK
+SEMESTER 518 SKS • Concentration Tracks (pilih salah satu) + Professional Ethics
+Concentration I: Data Engineering and Big Data Analytics
+NOMATA KULIAH LEARNING OUTCOMES LEARNING TOOLS
+1Big Data Infrastructure
+2 SKSHadoopApache SparkHDFS
+YARNMesos
+2Distributed Systems
+3 SKSApache KafkaZooKeeper
+gRPCDockerKubernetes
+3Data Pipeline
+Development
+3 SKSApache AirflowLuigiPrefect
+dbtPython
+4Cloud Computing
+2 SKSAWSGCPAzureTerraform
+Docker
+5ETL Processes
+3 SKSApache NiFiTalend
+InformaticaPythonSQL
+6Data Lakes
+3 SKSAWS S3Delta Lake
+Apache IcebergHivePrestoApply natural language processing techniques to extract information from unstructured text 1.
+Implement text preprocessing, tokenization, and normalization methods 2.
+Develop text classification and clustering models for document analysis 3.
+Apply sentiment analysis and topic modeling algorithms to text corpora 4.
+Evaluate text mining solutions for accuracy, scalability, and business relevance 5.
+Design data warehouse architectures to support business intelligence requirements 1.
+Implement ETL processes for data integration from heterogeneous sources 2.
+Apply dimensional modeling techniques for analytical data representation 3.
+Develop data mining algorithms for pattern discovery and prediction 4.
+Evaluate data warehousing and mining solutions for performance and business value 5.
+Create clear and concise technical documentation for diverse audiences 1.
+Apply proper structure and organization in technical and business documents 2.
+Develop data-driven reports that effectively communicate analytical findings 3.
+Implement visualizations and formatting to enhance document readability 4.
+Evaluate technical documentation for clarity, accuracy, and audience appropriateness 5.
+Design mobile applications that incorporate data science capabilities 1.
+Implement data collection and processing for mobile sensing applications 2.
+Apply offline data analytics techniques for mobile environments 3.
+Develop synchronization strategies for distributed mobile data 4.
+Evaluate mobile applications for performance, battery efficiency, and user experience 5.
+Apply distributed computing frameworks for large-scale data processing 1.
+Implement parallel algorithms for big data analysis 2.
+Develop data pipelines for processing structured and unstructured big data 3.
+Apply real-time analytics techniques for streaming data 4.
+Evaluate big data solutions for scalability, fault tolerance, and processing efficiency 5.
+Apply advanced statistical methods for complex data analysis problems 1.
+Implement ensemble and deep learning techniques for predictive modeling 2.
+Develop feature engineering strategies to improve model performance 3.
+Apply dimensionality reduction and regularization methods for high-dimensional data 4.
+Evaluate advanced analytics methods for accuracy, interpretability, and computational efficiency 5.
+Apply privacy-preserving data mining techniques in analytics workflows 1.
+Implement data anonymization and pseudonymization methods 2.
+Develop data governance frameworks for privacy compliance 3.
+Apply security measures for protecting sensitive data throughout its lifecycle 4.
+Evaluate privacy and security solutions against regulatory requirements and ethical standards 5.
+Design scalable infrastructure architectures for big data processing 1.
+Implement distributed storage systems for large-scale data management 2.
+Apply resource allocation and scheduling techniques in big data clusters 3.
+Configure big data platforms for high availability and fault tolerance 4.
+Evaluate infrastructure solutions for performance, scalability, and cost-effectiveness 5.
+Design distributed system architectures for data-intensive applications 1.
+Implement distributed algorithms for coordination and consensus 2.
+Apply fault tolerance and recovery mechanisms in distributed environments 3.
+Develop distributed data processing applications using modern frameworks 4.
+Evaluate distributed systems for consistency, availability, and partition tolerance 5.
+Design end-to-end data pipelines for diverse data sources and targets 1.
+Implement batch and stream processing components in data workflows 2.
+Apply data quality and validation techniques throughout the pipeline 3.
+Develop monitoring and error handling mechanisms for pipeline reliability 4.
+Evaluate data pipelines for throughput, latency, and fault resilience 5.
+Deploy big data processing workloads on cloud platforms 1.
+Implement cloud-native storage solutions for data engineering 2.
+Apply auto-scaling and resource optimization in cloud environments 3.
+Develop infrastructure-as-code for reproducible cloud deployments 4.
+Evaluate cloud service options for cost, performance, and compliance requirements 5.
+Design robust ETL workflows for complex data integration scenarios 1.
+Implement transformation logic for data cleansing and standardization 2.
+Apply incremental loading and change data capture techniques 3.
+Develop metadata management and lineage tracking in ETL processes 4.
+Evaluate ETL solutions for reliability, maintainability, and performance 5.
+Design data lake architectures that support diverse analytical workloads 1.
+Implement data governance and catalog systems for data discovery 2.
+Apply schema-on-read approaches for flexible data analysis 3.
+Develop data lake processing patterns for batch and interactive queries 4.
+Evaluate data lake implementations for scalability, security, and analytical capabilities 5.4/30/26, 4:02 PM Perbaikan & Penyelarasan Learning Outcomes — Program Studi Data Science
+https://lo.adambhuana.my.id 3/6
+
+=== PAGE 4 ===
+Concentration II: Artificial Intelligence (AI) and Machine Learning (ML) Development
+NOMATA KULIAH LEARNING OUTCOMES LEARNING TOOLS
+1Deep Learning
+3 SKSTensorFlowPyTorchKeras
+CUDAGoogle Colab
+2Natural Language
+Processing (NLP)
+3 SKSHugging FacespaCyNLTK
+TransformersGPT API
+3Computer Vision
+3 SKSOpenCVYOLOTensorFlow
+PyTorchPillow
+4Reinforcement Learning
+3 SKSOpenAI GymStable Baselines3
+PyTorchRay RLlib
+5AI-Planning and Search
+Strategies
+2 SKSPythonPDDLA* Search
+NetworkXOR-Tools
+6Model Deployment
+2 SKSDockerFastAPIFlask
+MLflowBentoML
+AWS SageMaker
+Concentration III: Business Intelligence and Advanced Data Analytics
+NOMATA KULIAH LEARNING OUTCOMES LEARNING TOOLS
+1Business Intelligence
+Tools
+2 SKSTableauPower BILooker
+MetabaseQlikView
+2Statistical Modeling
+2 SKSRPythonSPSSStata
+Excel
+3Customer Analytics
+3 SKSPythonSQLMixpanel
+Google AnalyticsHubSpot
+4Predictive Analytics
+3 SKSPythonScikit-learnXGBoost
+AutoMLH2O.ai
+5Business Intelligence and
+Reporting
+3 SKSPower BITableauLooker
+SQLDAX
+6Supply Chain
+Management Systems
+3 SKSSAPOracle SCMPython
+ExcelArena Simulation
+Mata Kuliah Wajib Semua Konsentrasi
+NOMATA KULIAH LEARNING OUTCOMES LEARNING TOOLS
+1Professional Ethics
+2 SKSCase StudiesNotion
+IEEE/ACM Ethics Guidelines
+SEMESTER 6 -- MBKM I24 SKS • Data Science Project Management, ETL, Statistical Modeling & MK Umum
+NOMATA KULIAH LEARNING OUTCOMES LEARNING TOOLS
+1Data Science Project
+Management
+4 SKSJiraNotionTrello
+MS ProjectGitHub Projects
+2Advanced Data
+Processing and ETL
+4 SKSApache AirflowTalendPython
+SQLdbtSparkDesign and implement neural network architectures 1.
+Apply deep learning algorithms to solve complex problems 2.
+Train and optimize deep learning models 3.
+Evaluate deep learning models for performance and generalization 4.
+Implement transfer learning techniques for resource efficiency 5.
+Apply text preprocessing techniques for NLP tasks 1.
+Implement language models for text generation and analysis 2.
+Design and develop sentiment analysis applications 3.
+Apply named entity recognition and information extraction 4.
+Evaluate NLP models for accuracy and generalization 5.
+Apply image processing techniques for computer vision tasks 1.
+Implement object detection and recognition algorithms 2.
+Design systems for image classification and segmentation 3.
+Apply deep learning models for visual data analysis 4.
+Evaluate computer vision systems for performance and accuracy 5.
+Apply reinforcement learning principles to sequential decision problems 1.
+Implement value-based and policy-based learning algorithms 2.
+Design reward functions for specific application domains 3.
+Develop multi-agent reinforcement learning systems 4.
+Evaluate reinforcement learning models for performance and stability 5.
+Apply search algorithms to solve planning problems 1.
+Implement heuristic search techniques for efficiency 2.
+Design planning representations for complex domains 3.
+Develop constraint satisfaction problem solvers 4.
+Evaluate planning algorithms for completeness and optimality 5.
+Deploy machine learning models to production environments 1.
+Implement model serving architectures and APIs 2.
+Apply monitoring and logging techniques for deployed models 3.
+Develop strategies for model updates and versioning 4.
+Evaluate production models for performance and reliability 5.
+Implement data visualization and dashboard solutions using leading BI platforms 1.
+Apply data modeling techniques for business intelligence applications 2.
+Develop interactive reports and analytical applications for business users 3.
+Configure data connections and integration with various enterprise data sources 4.
+Evaluate BI tool capabilities for specific business requirements and user needs 5.
+Apply appropriate statistical models to business data analysis problems 1.
+Implement regression, time series, and multivariate analysis techniques 2.
+Develop hypothesis testing frameworks for business decision support 3.
+Apply model validation and diagnostic techniques to ensure statistical validity 4.
+Evaluate statistical models for accuracy, robustness, and business applicability 5.
+Design customer segmentation models using demographic and behavioral data 1.
+Implement customer lifetime value analysis and churn prediction models 2.
+Develop marketing campaign effectiveness measurement frameworks 3.
+Apply customer journey mapping and touchpoint analysis techniques 4.
+Evaluate customer analytics initiatives for business impact and ROI 5.
+Design predictive modeling frameworks for business forecasting and planning 1.
+Implement machine learning algorithms for classification and regression problems 2.
+Develop feature engineering techniques to improve predictive model performance 3.
+Apply model ensemble methods to enhance prediction accuracy 4.
+Evaluate predictive models for accuracy, interpretability, and business utility 5.
+Design comprehensive BI architectures aligned with organizational strategy 1.
+Implement data governance frameworks for BI initiatives 2.
+Develop KPI frameworks and performance measurement systems 3.
+Create executive dashboards and automated reporting systems 4.
+Evaluate BI implementations for business impact, user adoption, and ROI 5.
+Apply analytics techniques to supply chain planning and optimization 1.
+Implement inventory management and demand forecasting models 2.
+Develop logistics network optimization and route planning solutions 3.
+Apply simulation techniques to evaluate supply chain performance 4.
+Evaluate supply chain analytics solutions for efficiency, resilience, and sustainability 5.
+Apply ethical frameworks to professional decision-making 1.
+Analyze ethical issues in technology and computing 2.
+Develop solutions to ethical dilemmas in professional contexts 3.
+Evaluate technology impacts on society and individuals 4.
+Demonstrate awareness of professional responsibility and accountability 5.
+Design comprehensive data science project plans including scope, resources, timelines, and risk assessments 1.
+Implement agile methodologies tailored for data science teams and workflows 2.
+Apply stakeholder management techniques for aligning data science initiatives with business goals 3.
+Develop data governance frameworks and documentation standards for data science projects 4.
+Evaluate data science project success using appropriate KPIs and metrics frameworks 5.
+Design scalable ETL architectures for complex data integration scenarios 1.
+Implement advanced transformation logic for data normalization, cleansing, and enrichment 2.
+Apply performance optimization techniques for high-volume ETL processes 3.
+Develop monitoring and error handling frameworks for production ETL pipelines 4.
+Evaluate ETL solutions for reliability, maintainability, and processing efficiency 5.4/30/26, 4:02 PM Perbaikan & Penyelarasan Learning Outcomes — Program Studi Data Science
+https://lo.adambhuana.my.id 4/6
+
+=== PAGE 5 ===
+NOMATA KULIAH LEARNING OUTCOMES LEARNING TOOLS
+3Data Wrangling and
+Preprocessing
+Techniques
+4 SKSPythonPandasNumPy
+OpenRefineGreat Expectations
+4Statistical Modeling and
+Inference
+4 SKSPythonRStataSAS
+PyMC3Statsmodels
+5Business Communication
+and Data Presentation
+4 SKSPower BITableau
+Google SlidesCanvaPrezi
+6Indonesian Way of Life /
+Pancasila
+2 SKSPresentation Tools
+Discussion Forums
+7Religions of the World
+2 SKSPresentation Tools
+Research Databases
+SEMESTER 7 -- MBKM II24 SKS • ML Applications, Big Data, Predictive Analytics & Capstone
+NOMATA KULIAH LEARNING OUTCOMES LEARNING TOOLS
+1Machine Learning
+Applications
+4 SKSPythonScikit-learn
+TensorFlowPyTorchMLflow
+Docker
+2Big Data Technologies
+and Cloud Integration
+4 SKSApache SparkKafkaAWS
+GCPAzureDatabricks
+3Predictive Analytics and
+Forecasting
+4 SKSPythonProphetARIMA
+XGBoostStatsmodels
+4Data Ethics and Privacy
+4 SKSOWASP ZAPPythonKali Linux
+GDPR Tools
+5Capstone Data Science
+Project
+4 SKSFull StackPythonDocker
+GitHubCloud Platform
+6Applied Indonesian
+Language
+2 SKSMS WordLaTeXTurnitin
+7Civic / Kewarganegaraan
+2 SKSPresentation Tools
+Research Databases
+SEMESTER 810 SKS • Capstone Project, Thesis, Portfolio & Publikasi
+NOMATA KULIAH LEARNING OUTCOMES LEARNING TOOLS
+1Capstone Project
+6 SKSFull StackPythonDocker
+GitHubCloud PlatformCI/CD
+2Collaborative Project
+Komponen CapstoneGitHubJiraNotionSlack
+MS Teams
+3Portfolio
+Komponen CapstoneGitHub PagesBehance
+LinkedInPersonal Website
+4Product Prototype
+Komponen CapstoneFigmaDockerGitHub
+Cloud PlatformPostman
+5Scientific Publication
+Komponen CapstoneLaTeXMendeleyZotero
+Google ScholarTurnitinImplement comprehensive data cleaning strategies for diverse data types (structured, semi-structured, unstructured) 1.
+Apply advanced techniques for handling missing data, outliers, and imbalanced datasets 2.
+Develop automated data quality assessment and validation frameworks 3.
+Implement feature engineering and transformation pipelines for machine learning preparation 4.
+Evaluate data preprocessing approaches for their impact on downstream analysis quality 5.
+Apply advanced statistical methods to complex real-world data problems 1.
+Implement various regression models, time series analysis, and multivariate techniques 2.
+Develop robust hypothesis testing frameworks with appropriate experimental designs 3.
+Apply Bayesian modeling approaches for uncertainty quantification 4.
+Evaluate statistical model assumptions, diagnostics, and performance metrics 5.
+Design compelling data narratives that communicate insights to diverse stakeholders 1.
+Implement advanced data visualization techniques for complex data relationships 2.
+Develop executive dashboards and interactive reporting systems 3.
+Apply storytelling techniques to transform technical findings into business recommendations 4.
+Evaluate data presentations for clarity, impact, and actionability across different audience types 5.
+Explain the principles of Pancasila as Indonesia's state philosophy 1.
+Apply Pancasila values in professional and social contexts 2.
+Analyze social issues from a Pancasila perspective 3.
+Develop solutions to societal challenges based on Pancasila principles 4.
+Evaluate policies and practices in light of Pancasila values 5.
+Analyze the core beliefs and practices of major world religions 1.
+Compare and contrast religious perspectives on ethical issues 2.
+Apply religious and cultural understanding in diverse environments 3.
+Evaluate the influence of religion on society and individual behavior 4.
+Demonstrate respect for religious diversity and perspectives 5.
+Design end-to-end machine learning solutions for complex business problems 1.
+Implement supervised, unsupervised, and reinforcement learning models for various domains 2.
+Develop feature engineering and selection strategies to optimize model performance 3.
+Apply model deployment and monitoring techniques in production environments 4.
+Evaluate machine learning solutions for accuracy, robustness, interpretability, and business impact 5.
+Design scalable big data architectures using distributed computing frameworks 1.
+Implement data processing pipelines for batch and stream processing workloads 2.
+Apply cloud-native services for big data storage, processing, and analytics 3.
+Develop integration strategies between on-premises systems and cloud platforms 4.
+Evaluate big data solutions for performance, cost-efficiency, scalability, and security 5.
+Apply advanced time series forecasting techniques for business planning and decision support 1.
+Implement ensemble methods and deep learning for complex prediction tasks 2.
+Develop predictive models for specialized domains (finance, marketing, operations) 3.
+Apply uncertainty quantification and scenario analysis in forecasting 4.
+Evaluate predictive models for accuracy, calibration, and practical utility in business contexts 5.
+Apply ethical frameworks and principles to data science and AI initiatives 1.
+Implement privacy-enhancing technologies and anonymization techniques 2.
+Develop data governance policies that address ethical and privacy considerations 3.
+Apply regulatory compliance measures (GDPR, CCPA, etc.) in data projects 4.
+Evaluate data science solutions for fairness, transparency, accountability, and societal impact 5.
+Design comprehensive data science projects addressing real-world problems 1.
+Implement end-to-end data pipelines from acquisition to insight generation 2.
+Apply appropriate analytical methods based on project requirements 3.
+Develop effective presentations and documentation of technical solutions 4.
+Evaluate project outcomes against business objectives and technical requirements 5.
+Communicate effectively in professional contexts using Indonesian language 1.
+Apply appropriate Indonesian language styles for different business situations 2.
+Develop technical and business documentation in formal Indonesian 3.
+Analyze Indonesian language use in professional and academic contexts 4.
+Evaluate the quality and effectiveness of professional communication in Indonesian 5.
+Analyze the relationship between citizenship rights and responsibilities in Indonesian society 1.
+Apply constitutional principles to contemporary civic issues and challenges 2.
+Evaluate the impact of public policies on citizens and communities 3.
+Develop strategies for civic engagement and participation in democratic processes 4.
+Demonstrate ethical decision-making aligned with national values and principles 5.
+Design and execute a comprehensive project addressing a complex real-world problem in the chosen field of study 1.
+Apply appropriate methodologies, tools, and techniques from across the curriculum to develop innovative solutions 2.
+Evaluate the effectiveness of implemented solutions using appropriate metrics and assessment techniques 3.
+Demonstrate professional and ethical responsibility in all aspects of project development and execution 4.
+Synthesize knowledge from multiple disciplines to create an integrated approach to problem-solving 5.
+Apply effective team collaboration skills in multidisciplinary project environments 1.
+Implement project management techniques for division of labor and task coordination 2.
+Resolve team conflicts constructively to maintain project progress 3.
+Demonstrate leadership and followership skills as appropriate in team contexts 4.
+Evaluate team processes and outcomes for continuous improvement 5.
+Curate a professional portfolio that effectively showcases technical and creative capabilities 1.
+Document project work with clear explanation of problem statements, methodologies, and outcomes 2.
+Reflect critically on personal and professional growth throughout the educational program 3.
+Present work samples that demonstrate breadth and depth of professional skills 4.
+Design portfolio materials that communicate effectively to target audiences (employers, clients, etc.) 5.
+Design and develop functional prototypes that demonstrate feasibility of proposed solutions 1.
+Apply iterative design and testing methodologies to refine prototype functionality 2.
+Implement appropriate technologies and techniques to create minimum viable products 3.
+Document technical specifications and development processes for knowledge transfer 4.
+Evaluate prototypes against user requirements and design specifications 5.
+Design and conduct original research following scientific methodology 1.
+Analyze research data using appropriate quantitative and/or qualitative methods 2.
+Synthesize research findings in the context of existing literature and theoretical frameworks 3.
+Develop manuscripts that meet academic publication standards and conventions 4.
+Communicate research findings effectively to both specialist and non-specialist audiences 5.4/30/26, 4:02 PM Perbaikan & Penyelarasan Learning Outcomes — Program Studi Data Science
+https://lo.adambhuana.my.id 5/6
+
+=== PAGE 6 ===
+NOMATA KULIAH LEARNING OUTCOMES LEARNING TOOLS
+6Thesis
+Komponen CapstoneLaTeXMendeleySPSS
+PythonTurnitin
+7Academic Writing in
+English
+2 SKSLaTeXGrammarlyMendeley
+ZoteroMS Word
+8Research Methodology
+2 SKSSPSSPythonRLaTeX
+MendeleyGoogle Scholar
+Ringkasan Total SKS
+SEMESTER SKS
+Semester 1 20
+Semester 2 20
+Short Semester 1 9
+Semester 3 18
+Semester 4 18
+Short Semester 2 9
+Semester 5 (Concentration) 18
+Semester 6 (MBKM I) 24
+Semester 7 (MBKM II) 24
+Semester 8 10
+TOTAL 152 + 18 (Extra) = 170 SKS
+Dokumen Perbaikan & Penyelarasan Learning Outcomes -- Program Studi Data Science
+Diselaraskan dengan Kebutuhan CDC Fakultas IT • Terakhir diperbarui: April 2026Formulate research questions and hypotheses that address significant issues in the field 1.
+Apply appropriate research methodologies to investigate proposed questions 2.
+Analyze findings using critical thinking and appropriate analytical frameworks 3.
+Synthesize conclusions that contribute to the body of knowledge in the field 4.
+Defend research findings and conclusions through scholarly argumentation 5.
+Apply academic writing conventions and formats 1.
+Develop well-structured arguments and thesis statements 2.
+Implement proper citation and referencing techniques 3.
+Analyze and synthesize information from academic sources 4.
+Evaluate and revise writing for clarity and coherence 5.
+Design research studies using appropriate methodologies 1.
+Apply data collection techniques relevant to research questions 2.
+Implement appropriate data analysis methods 3.
+Interpret research findings and draw valid conclusions 4.
+Communicate research results effectively through reports and presentations 5.4/30/26, 4:02 PM Perbaikan & Penyelarasan Learning Outcomes — Program Studi Data Science
+https://lo.adambhuana.my.id 6/6
+
