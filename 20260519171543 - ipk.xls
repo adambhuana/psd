@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>IPK Mahasiswa Periode 2025 Ganjil</title>
+                <style type="text/css">
+                    body {
+                margin: 0 auto;
+            }
+            body, td, th {
+                font-family: 'Source Sans Pro', sans-serif;
+                font-size: 12px;
+            }
+            td, th {
+                vertical-align: top;
+            }
+            th {
+                text-align: center;
+            }
+            .font-normal th {
+                font-weight: normal;
+                vertical-align: middle;
+            }
+            .kop {
+                border-spacing: 0;
+                border-collapse: collapse;
+            }
+            .kop td {
+                padding: 0;
+                text-align: center;
+            }
+            .kop-univ td {
+                font-size: 16px;
+                line-height: 1.1;
+            }
+            .kop-fak td {
+                font-size: 24px;
+                font-weight: bold;
+                line-height: 1.1;
+            }
+            .kop-prodi td {
+                font-size: 18px;
+                font-weight: bold;
+                line-height: 1.1;
+                padding-bottom: 5px;
+            }
+            .header td, .header th {
+                font-size: 16px;
+            }
+            .mid td, .mid th {
+                font-size: 14px;
+            }
+            .center td, .center th {
+                text-align: center;
+                vertical-align: middle;
+            }
+            table.border {
+                border-collapse: collapse;
+            }
+            table.border td, table.border th {
+                border: 1px solid black;
+            }
+            tr.noborder td, tr.noborder th {
+                border: none;
+            }
+            hr {
+                margin: 10px auto;
+                border: 1px solid black;
+                border-width: 1px 0 0 0;
+            }
+            .text-center {
+                text-align: center;
+            }
+            .btn-flat {
+                -webkit-border-radius: 0;
+                -moz-border-radius: 0;
+                border-radius: 0;
+                -webkit-box-shadow: none;
+                -moz-box-shadow: none;
+                box-shadow: none;
+                border-width: 1px;
+            }
+            .btn.btn-primary {
+                background-color: #0052A2;
+                border-color: #008D4C;
+            }
+            .btn.btn-primary:hover, .btn.btn-primary:active, .btn.btn-primary.hover {
+                background-color: #008D4C;
+            }
+            .bg-info {
+                background-color: #D9EDF7;
+            }
+            .bg-success {
+                background-color: #DFF0D8;
+            }
+
+            .title{
+                font-size: 14px;
+                font-weight: bold;
+            }
+            .padded th, .padded td {
+                padding: 4px;
+            }
+            @media print {
+                .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
+                  float: left;
+                }
+                .col-md-12 {
+                  width: 100%;
+                }
+                .col-md-11 {
+                  width: 91.66666666666666%;
+                }
+                .col-md-10 {
+                  width: 83.33333333333334%;
+                }
+                .col-md-9 {
+                  width: 75%;
+                }
+                .col-md-8 {
+                  width: 66.66666666666666%;
+                }
+                .col-md-7 {
+                  width: 58.333333333333336%;
+                }
+                .col-md-6 {
+                  width: 50%;
+                }
+                .col-md-5 {
+                  width: 41.66666666666667%;
+                }
+                .col-md-4 {
+                  width: 33.33333333333333%;
+                 }
+                 .col-md-3 {
+                   width: 25%;
+                 }
+                 .col-md-2 {
+                   width: 16.666666666666664%;
+                 }
+                 .col-md-1 {
+                  width: 8.333333333333332%;
+                 }
+            }
+
+            .footer {
+                background-color: #fab619;
+                height: 36px;
+                width: 100%;
+                margin-top: 20px;
+                position: relative;
+            }
+            .footer::after {
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                content: url('https://assets.siakadcloud.com/assets/v1/img/obe/object-footer.svg');
+                height: 61px;
+            }
+
+            @media print {
+                .footer.no-print {
+                    display: none;
+                }
+                .navbar.navbar-default{
+                    display: none !important;
+                    position: absolute;
+                    top: -9999px;
+                    left: -9999px;
+                }
+            }
+                    </style>
+    </head>
+    <body>
+        
+        <div align="center">
+            <div style="width: 1000px">
+                <table style="width: 100%;">
+<tbody>
+<tr>
+<td style="width: 15%;" align="center"><img src="https://assets.siakadcloud.com/uploads/universitascakrawala/logoaplikasi/1425.jpg?1737517389" alt="" width="98" height="98" /></td>
+<td align="center">
+<p><strong style="font-size: 16pt;">UNIVERSITAS CAKRAWALA</strong><br />Plaza City View, Jl. Kemang Timur No.1 Pejaten Barat, Pasar Minggu<br />Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta<br /><a href="http://www.cakrawala.ac.id">www.cakrawala.ac.id</a>&nbsp;</p>
+</td>
+</tr>
+</tbody>
+</table>
+<hr style="border: 0; border-top: 5px double #8c8c8c; margin-top: 0;" />
+<style type="text/css">
+    .border tr td,
+    .border tr th,
+    .border thead tr th,
+    .border tbody tr td {
+        border: 1px solid #000;
+        mso-number-format: \@;
+    }
+</style>
+<div align="center">
+        <div class="title" style="margin-bottom: 20px">
+        IPK MAHASISWA PERIODE 2025 GANJIL    </div>
+                <table style="text-align:left;margin-bottom: 20px" border="0" width="1000px" cellpadding="5" cellspacing="0">
+                            <tr class="left">
+                    <td width="12%"><strong>Program Studi</strong></td>
+                    <td width="1%">:</td>
+                    <td width="34%">Sains Data</td>
+                                            <td width="6%">&nbsp;</td>
+                        <td width="12%"><strong>Periode Masuk</strong></td>
+                        <td width="1%">:</td>
+                        <td width="34%">2025 Ganjil</td>
+                                    </tr>
+                            <tr class="left">
+                    <td width="12%"><strong>Jalur Pendaftaran</strong></td>
+                    <td width="1%">:</td>
+                    <td width="34%">Semua Jalur</td>
+                                            <td width="6%">&nbsp;</td>
+                        <td width="12%"><strong>Gelombang</strong></td>
+                        <td width="1%">:</td>
+                        <td width="34%">Semua Gelombang</td>
+                                    </tr>
+                            <tr class="left">
+                    <td width="12%"><strong>Sistem Kuliah</strong></td>
+                    <td width="1%">:</td>
+                    <td width="34%">Semua Sistem Kuliah</td>
+                                            <td width="6%">&nbsp;</td>
+                        <td width="12%"><strong>Status Mahasiswa</strong></td>
+                        <td width="1%">:</td>
+                        <td width="34%">Semua Status Mahasiswa</td>
+                                    </tr>
+                            <tr class="left">
+                    <td width="12%"><strong>Status Semester</strong></td>
+                    <td width="1%">:</td>
+                    <td width="34%">Semua Status Semester</td>
+                                            <td width="53%" colspan="3">&nbsp;</td>
+                                    </tr>
+                    </table>
+            <table class="border" style="text-align:left;margin-bottom: 20px" border="1" width="1000px" cellpadding="5" cellspacing="0">
+        <thead>
+            <tr>
+                                    <th class="text-center"  >No.</th>
+                                    <th class="text-center"  >NIM</th>
+                                    <th class="text-center"  >Nama</th>
+                                    <th class="text-center"  >Jalur Pendaftaran</th>
+                                    <th class="text-center"  >Gelombang</th>
+                                    <th class="text-center"  >Sistem Kuliah</th>
+                                    <th class="text-center"  >IPK Lulus</th>
+                            </tr>
+        </thead>
+        <tbody>
+                    <tr>
+                            <td   style="text-align:center" >
+                    1                </td>
+                            <td   style="text-align:center" >
+                    25120500024                </td>
+                            <td   >
+                    ACHMAD ARI SONANG                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 2                </td>
+                            <td   >
+                    Profesional                </td>
+                            <td   style="text-align:center" >
+                    3.00                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    2                </td>
+                            <td   style="text-align:center" >
+                    25120500030                </td>
+                            <td   >
+                    RIESYA FACHRI ROFI                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 3                </td>
+                            <td   >
+                    Profesional                </td>
+                            <td   style="text-align:center" >
+                    2.58                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    3                </td>
+                            <td   style="text-align:center" >
+                    25110500001                </td>
+                            <td   >
+                    RIANI EKA NYSA                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 1                </td>
+                            <td   >
+                    Reguler                </td>
+                            <td   style="text-align:center" >
+                    3.96                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    4                </td>
+                            <td   style="text-align:center" >
+                    25110500002                </td>
+                            <td   >
+                    FATHUR RIJAL                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 1                </td>
+                            <td   >
+                    Reguler                </td>
+                            <td   style="text-align:center" >
+                    3.82                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    5                </td>
+                            <td   style="text-align:center" >
+                    25110500003                </td>
+                            <td   >
+                    FARREL ABDA AGHAZKA                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 3                </td>
+                            <td   >
+                    Reguler                </td>
+                            <td   style="text-align:center" >
+                    3.93                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    6                </td>
+                            <td   style="text-align:center" >
+                    25110500004                </td>
+                            <td   >
+                    TIARA PUTRI RAMADHANI                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 2                </td>
+                            <td   >
+                    Reguler                </td>
+                            <td   style="text-align:center" >
+                    3.90                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    7                </td>
+                            <td   style="text-align:center" >
+                    25110500005                </td>
+                            <td   >
+                    MUFLIH FUADI                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 3                </td>
+                            <td   >
+                    Reguler                </td>
+                            <td   style="text-align:center" >
+                    3.67                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    8                </td>
+                            <td   style="text-align:center" >
+                    25110500006                </td>
+                            <td   >
+                    ADINDA AZKA FIRMANDA                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 3                </td>
+                            <td   >
+                    Reguler                </td>
+                            <td   style="text-align:center" >
+                    3.91                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    9                </td>
+                            <td   style="text-align:center" >
+                    25110500033                </td>
+                            <td   >
+                    DIVA ALMADEA VASYA                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 4                </td>
+                            <td   >
+                    Reguler                </td>
+                            <td   style="text-align:center" >
+                    4.00                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    10                </td>
+                            <td   style="text-align:center" >
+                    25110500007                </td>
+                            <td   >
+                    CHIK KUSUMOWIDHIASTUTI                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 2                </td>
+                            <td   >
+                    Reguler                </td>
+                            <td   style="text-align:center" >
+                    3.75                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    11                </td>
+                            <td   style="text-align:center" >
+                    25110500008                </td>
+                            <td   >
+                    ARYADI                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 4                </td>
+                            <td   >
+                    Reguler                </td>
+                            <td   style="text-align:center" >
+                    3.77                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    12                </td>
+                            <td   style="text-align:center" >
+                    25110500009                </td>
+                            <td   >
+                    TASYEL TRIAJANISYA                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 4                </td>
+                            <td   >
+                    Reguler                </td>
+                            <td   style="text-align:center" >
+                    3.96                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    13                </td>
+                            <td   style="text-align:center" >
+                    25110500010                </td>
+                            <td   >
+                    AHMAD FAHREZA                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 4                </td>
+                            <td   >
+                    Reguler                </td>
+                            <td   style="text-align:center" >
+                    0.00                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    14                </td>
+                            <td   style="text-align:center" >
+                    25110500011                </td>
+                            <td   >
+                    RIZQO MISBAHULGULAM MUCHSIN                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 3                </td>
+                            <td   >
+                    Reguler                </td>
+                            <td   style="text-align:center" >
+                    3.96                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    15                </td>
+                            <td   style="text-align:center" >
+                    25110500012                </td>
+                            <td   >
+                    SITI HANDAYANI                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 3                </td>
+                            <td   >
+                    Reguler                </td>
+                            <td   style="text-align:center" >
+                    0.00                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    16                </td>
+                            <td   style="text-align:center" >
+                    25110500013                </td>
+                            <td   >
+                    STEPANUS TEO                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 1                </td>
+                            <td   >
+                    Reguler                </td>
+                            <td   style="text-align:center" >
+                    3.79                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    17                </td>
+                            <td   style="text-align:center" >
+                    25110500014                </td>
+                            <td   >
+                    MUHAMMAD SHOBRUN JAMIL                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 4                </td>
+                            <td   >
+                    Reguler                </td>
+                            <td   style="text-align:center" >
+                    0.00                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    18                </td>
+                            <td   style="text-align:center" >
+                    25110500015                </td>
+                            <td   >
+                    AZKA ARTIE RABBANI                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 4                </td>
+                            <td   >
+                    Reguler                </td>
+                            <td   style="text-align:center" >
+                    3.78                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    19                </td>
+                            <td   style="text-align:center" >
+                    25110500016                </td>
+                            <td   >
+                    KEVIN THOMAS                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 4                </td>
+                            <td   >
+                    Reguler                </td>
+                            <td   style="text-align:center" >
+                    3.30                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    20                </td>
+                            <td   style="text-align:center" >
+                    25110500017                </td>
+                            <td   >
+                    LAUDYA PRICILLA PUTRI                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 4                </td>
+                            <td   >
+                    Reguler                </td>
+                            <td   style="text-align:center" >
+                    3.91                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    21                </td>
+                            <td   style="text-align:center" >
+                    25110500018                </td>
+                            <td   >
+                    KANAYA ANANTANI SYAFIKRI                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 4                </td>
+                            <td   >
+                    Reguler                </td>
+                            <td   style="text-align:center" >
+                    3.82                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    22                </td>
+                            <td   style="text-align:center" >
+                    25110500019                </td>
+                            <td   >
+                    ALYA MUTIARA LATTIFA                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 1                </td>
+                            <td   >
+                    Reguler                </td>
+                            <td   style="text-align:center" >
+                    3.91                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    23                </td>
+                            <td   style="text-align:center" >
+                    25110500020                </td>
+                            <td   >
+                    MUHAMMAD BEVAN ALQARANA                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 4                </td>
+                            <td   >
+                    Reguler                </td>
+                            <td   style="text-align:center" >
+                    3.96                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    24                </td>
+                            <td   style="text-align:center" >
+                    25110500021                </td>
+                            <td   >
+                    ZAHIR ALI IZZATURRAHMAN                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 4                </td>
+                            <td   >
+                    Reguler                </td>
+                            <td   style="text-align:center" >
+                    3.90                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    25                </td>
+                            <td   style="text-align:center" >
+                    25110500022                </td>
+                            <td   >
+                    AFNI FITRI NUR HIDAYAH                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 4                </td>
+                            <td   >
+                    Reguler                </td>
+                            <td   style="text-align:center" >
+                    3.97                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    26                </td>
+                            <td   style="text-align:center" >
+                    25110500023                </td>
+                            <td   >
+                    FAZA QINTHORO PUTRA TSANY                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 3                </td>
+                            <td   >
+                    Reguler                </td>
+                            <td   style="text-align:center" >
+                    3.81                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    27                </td>
+                            <td   style="text-align:center" >
+                    25110500024                </td>
+                            <td   >
+                    WANDASARI TUNGGUL HADI KUSUMO ASTUTI                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 4                </td>
+                            <td   >
+                    Reguler                </td>
+                            <td   style="text-align:center" >
+                    3.88                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    28                </td>
+                            <td   style="text-align:center" >
+                    25110500025                </td>
+                            <td   >
+                    LEROY CHRISTOPHER GERSON                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 4                </td>
+                            <td   >
+                    Reguler                </td>
+                            <td   style="text-align:center" >
+                    3.96                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    29                </td>
+                            <td   style="text-align:center" >
+                    25110500026                </td>
+                            <td   >
+                    GALIH AGUNG NURFADHILAH                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 4                </td>
+                            <td   >
+                    Profesional                </td>
+                            <td   style="text-align:center" >
+                    3.85                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    30                </td>
+                            <td   style="text-align:center" >
+                    25110500027                </td>
+                            <td   >
+                    ENRICO LAZUARDI                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 4                </td>
+                            <td   >
+                    Reguler                </td>
+                            <td   style="text-align:center" >
+                    3.82                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    31                </td>
+                            <td   style="text-align:center" >
+                    25110500028                </td>
+                            <td   >
+                    SOLICHA RASUNA IDRIS                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 4                </td>
+                            <td   >
+                    Reguler                </td>
+                            <td   style="text-align:center" >
+                    0.00                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    32                </td>
+                            <td   style="text-align:center" >
+                    25110500029                </td>
+                            <td   >
+                    OLGA RIZKY RAMADHANI                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 2                </td>
+                            <td   >
+                    Reguler                </td>
+                            <td   style="text-align:center" >
+                    3.85                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    33                </td>
+                            <td   style="text-align:center" >
+                    25110500030                </td>
+                            <td   >
+                    USWATUN HASANAH                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 4                </td>
+                            <td   >
+                    Reguler                </td>
+                            <td   style="text-align:center" >
+                    4.00                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    34                </td>
+                            <td   style="text-align:center" >
+                    25110500031                </td>
+                            <td   >
+                    KASUB MUHAMMAD SULAIMAN                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 3                </td>
+                            <td   >
+                    Reguler                </td>
+                            <td   style="text-align:center" >
+                    3.70                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    35                </td>
+                            <td   style="text-align:center" >
+                    25110500032                </td>
+                            <td   >
+                    AFIF FEBRIAN                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 4                </td>
+                            <td   >
+                    Reguler                </td>
+                            <td   style="text-align:center" >
+                    3.43                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    36                </td>
+                            <td   style="text-align:center" >
+                    25110500034                </td>
+                            <td   >
+                    NABIEL AZZACKY                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 4                </td>
+                            <td   >
+                    Reguler                </td>
+                            <td   style="text-align:center" >
+                    3.68                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    37                </td>
+                            <td   style="text-align:center" >
+                    25110500035                </td>
+                            <td   >
+                    DIAN RAHMATILLAH PRIMA ASTRI                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 3                </td>
+                            <td   >
+                    Reguler                </td>
+                            <td   style="text-align:center" >
+                    3.34                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    38                </td>
+                            <td   style="text-align:center" >
+                    25120500001                </td>
+                            <td   >
+                    ADITYA WARDANA                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 3                </td>
+                            <td   >
+                    Profesional                </td>
+                            <td   style="text-align:center" >
+                    4.00                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    39                </td>
+                            <td   style="text-align:center" >
+                    25120500002                </td>
+                            <td   >
+                    MOHAMMAD RAIFANDI BAIQI                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 3                </td>
+                            <td   >
+                    Profesional                </td>
+                            <td   style="text-align:center" >
+                    3.58                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    40                </td>
+                            <td   style="text-align:center" >
+                    25120500003                </td>
+                            <td   >
+                    RAFAEL SATRIO SAMIDJAN                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 3                </td>
+                            <td   >
+                    Profesional                </td>
+                            <td   style="text-align:center" >
+                    3.61                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    41                </td>
+                            <td   style="text-align:center" >
+                    25120500004                </td>
+                            <td   >
+                    PUTRI SAHIRA WULANDARI                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 1                </td>
+                            <td   >
+                    Profesional                </td>
+                            <td   style="text-align:center" >
+                    3.76                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    42                </td>
+                            <td   style="text-align:center" >
+                    25120500005                </td>
+                            <td   >
+                    ANGGI DEBIA ZAHRA                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 3                </td>
+                            <td   >
+                    Profesional                </td>
+                            <td   style="text-align:center" >
+                    3.93                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    43                </td>
+                            <td   style="text-align:center" >
+                    25120500006                </td>
+                            <td   >
+                    MOHAMMAD DIKA RIFA NADI                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 2                </td>
+                            <td   >
+                    Profesional                </td>
+                            <td   style="text-align:center" >
+                    3.90                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    44                </td>
+                            <td   style="text-align:center" >
+                    25120500007                </td>
+                            <td   >
+                    AHMAD MUWAFFAQ                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 2                </td>
+                            <td   >
+                    Profesional                </td>
+                            <td   style="text-align:center" >
+                    4.00                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    45                </td>
+                            <td   style="text-align:center" >
+                    25120500008                </td>
+                            <td   >
+                    BISMANDITA PRAMUDITYA ANDELA WARDANA                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 2                </td>
+                            <td   >
+                    Profesional                </td>
+                            <td   style="text-align:center" >
+                    2.48                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    46                </td>
+                            <td   style="text-align:center" >
+                    25120500009                </td>
+                            <td   >
+                    FADLI ISMAIL                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 3                </td>
+                            <td   >
+                    Profesional                </td>
+                            <td   style="text-align:center" >
+                    3.50                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    47                </td>
+                            <td   style="text-align:center" >
+                    25120500010                </td>
+                            <td   >
+                    RIFANDI IMANUEL                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 3                </td>
+                            <td   >
+                    Profesional                </td>
+                            <td   style="text-align:center" >
+                    3.38                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    48                </td>
+                            <td   style="text-align:center" >
+                    25120500011                </td>
+                            <td   >
+                    GHINA ATHAYA TYANO                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 2                </td>
+                            <td   >
+                    Profesional                </td>
+                            <td   style="text-align:center" >
+                    3.96                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    49                </td>
+                            <td   style="text-align:center" >
+                    25120500012                </td>
+                            <td   >
+                    ZAEN DINATUSSHOLIHAH                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 3                </td>
+                            <td   >
+                    Profesional                </td>
+                            <td   style="text-align:center" >
+                    3.72                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    50                </td>
+                            <td   style="text-align:center" >
+                    25120500013                </td>
+                            <td   >
+                    ZAMAL                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 2                </td>
+                            <td   >
+                    Profesional                </td>
+                            <td   style="text-align:center" >
+                    2.40                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    51                </td>
+                            <td   style="text-align:center" >
+                    25120500014                </td>
+                            <td   >
+                    RAFFEL OKTAVIANO TURANGAN                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 4                </td>
+                            <td   >
+                    Profesional                </td>
+                            <td   style="text-align:center" >
+                    2.58                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    52                </td>
+                            <td   style="text-align:center" >
+                    25120500015                </td>
+                            <td   >
+                    MUHAMAD FARHAN MUZAKI                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 3                </td>
+                            <td   >
+                    Profesional                </td>
+                            <td   style="text-align:center" >
+                    3.36                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    53                </td>
+                            <td   style="text-align:center" >
+                    25120500016                </td>
+                            <td   >
+                    SALSABILA TAHIRA YASMIN                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 3                </td>
+                            <td   >
+                    Profesional                </td>
+                            <td   style="text-align:center" >
+                    3.85                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    54                </td>
+                            <td   style="text-align:center" >
+                    25120500017                </td>
+                            <td   >
+                    RIZKY DWI SAPUTRA                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 4                </td>
+                            <td   >
+                    Profesional                </td>
+                            <td   style="text-align:center" >
+                    3.80                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    55                </td>
+                            <td   style="text-align:center" >
+                    25120500018                </td>
+                            <td   >
+                    AHMAD ZHIDAN YUGI SAPUTRO                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 4                </td>
+                            <td   >
+                    Profesional                </td>
+                            <td   style="text-align:center" >
+                    3.37                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    56                </td>
+                            <td   style="text-align:center" >
+                    25120500019                </td>
+                            <td   >
+                    NACWA JULIANTI                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 4                </td>
+                            <td   >
+                    Profesional                </td>
+                            <td   style="text-align:center" >
+                    3.45                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    57                </td>
+                            <td   style="text-align:center" >
+                    25120500020                </td>
+                            <td   >
+                    DEVA NANDA ALFARIZI                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 4                </td>
+                            <td   >
+                    Profesional                </td>
+                            <td   style="text-align:center" >
+                    3.75                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    58                </td>
+                            <td   style="text-align:center" >
+                    25120500021                </td>
+                            <td   >
+                    EKA BUDI ARTA                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 4                </td>
+                            <td   >
+                    Profesional                </td>
+                            <td   style="text-align:center" >
+                    3.00                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    59                </td>
+                            <td   style="text-align:center" >
+                    25120500022                </td>
+                            <td   >
+                    INKE DIAN PRASIDHA                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 3                </td>
+                            <td   >
+                    Profesional                </td>
+                            <td   style="text-align:center" >
+                    2.58                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    60                </td>
+                            <td   style="text-align:center" >
+                    25120500023                </td>
+                            <td   >
+                    ANGGUN ANGGREINI                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 4                </td>
+                            <td   >
+                    Profesional                </td>
+                            <td   style="text-align:center" >
+                    3.44                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    61                </td>
+                            <td   style="text-align:center" >
+                    25120500025                </td>
+                            <td   >
+                    DARUDIN                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 3                </td>
+                            <td   >
+                    Profesional                </td>
+                            <td   style="text-align:center" >
+                    3.02                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    62                </td>
+                            <td   style="text-align:center" >
+                    25120500026                </td>
+                            <td   >
+                    MUHAMMAD HAYYUN AL FATIH                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 3                </td>
+                            <td   >
+                    Profesional                </td>
+                            <td   style="text-align:center" >
+                    3.31                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    63                </td>
+                            <td   style="text-align:center" >
+                    25120500027                </td>
+                            <td   >
+                    STEVEN LAU                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 3                </td>
+                            <td   >
+                    Profesional                </td>
+                            <td   style="text-align:center" >
+                    3.00                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    64                </td>
+                            <td   style="text-align:center" >
+                    25120500028                </td>
+                            <td   >
+                    DANI RIYANTO                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 4                </td>
+                            <td   >
+                    Profesional                </td>
+                            <td   style="text-align:center" >
+                    3.97                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    65                </td>
+                            <td   style="text-align:center" >
+                    25120500029                </td>
+                            <td   >
+                    TIRTO PUTRO ADIWIGUNA                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 4                </td>
+                            <td   >
+                    Profesional                </td>
+                            <td   style="text-align:center" >
+                    3.29                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    66                </td>
+                            <td   style="text-align:center" >
+                    25120500031                </td>
+                            <td   >
+                    FADHLURRAHMAN                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 4                </td>
+                            <td   >
+                    Profesional                </td>
+                            <td   style="text-align:center" >
+                    3.00                </td>
+                    </tr>
+            <tr>
+                            <td   style="text-align:center" >
+                    67                </td>
+                            <td   style="text-align:center" >
+                    25120500032                </td>
+                            <td   >
+                    M. MAULANA KHAERUL ANAM                </td>
+                            <td   >
+                    Seleksi Mandiri PTS                </td>
+                            <td   >
+                    Gelombang 4                </td>
+                            <td   >
+                    Profesional                </td>
+                            <td   style="text-align:center" >
+                    3.97                </td>
+                    </tr>
+            </tbody>
+    </table>
+</div>
+<div style="width:300px;float: right;margin-top: 30px;">
+    , 19 Mei 2026<br>
+     Sains Data<br><br><br><br><br>
+</div>
+
+<div style="page-break-after:always;clear: both;"></div>
+                <style>
+    /* Watermark-style footer */
+    .footprint {
+        display: block;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        text-align: left;
+        font-size: 5px;
+    }
+
+    @media print {
+        .footprint {
+            display: block;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            text-align: left;
+            font-size: 5px;
+        }
+    }
+
+    @page {
+        /* margin-bottom: 0; */
+    }
+</style>
+<div class="footprint">
+    <div>
+        Dicetak oleh: Adam Puspabhuana, M.Kom., pada 19 Mei 2026 17:15:43 WIB | siakad.cakrawala.ac.id/siakad/rep_ipk    </div>
+</div>            </div>
+        </div>
+
+        <!-- Tambahan footer untuk laporan OBE -->
+        
+        <!-- tambahan -->
+            </body>
+</html>

@@ -1,0 +1,2260 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zyvanta AI Chat — Talent Matching</title>
+    <meta name="description" content="Zyvanta AI membantu mencocokkan mahasiswa Data Science dengan posisi magang berdasarkan IPK, portfolio, dan keterampilan.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+    <style>
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0e1a;
+            --bg-secondary: #111827;
+            --bg-card: #1a1f35;
+            --accent: #6366f1;
+            --accent-light: #818cf8;
+            --cyan: #06b6d4;
+            --green: #10b981;
+            --red: #ef4444;
+            --orange: #f59e0b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: rgba(99, 102, 241, 0.15);
+            --glass-bg: rgba(26, 31, 53, 0.6);
+            --glass-border: rgba(99, 102, 241, 0.12);
+            --navbar-height: 64px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* ===== AMBIENT BACKGROUND ===== */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -40%;
+            left: -20%;
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.06) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -30%;
+            right: -20%;
+            width: 70%;
+            height: 70%;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.04) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--navbar-height);
+            background: rgba(17, 24, 39, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            z-index: 100;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .back-link {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 6px 12px;
+            border-radius: 8px;
+            transition: all 0.25s ease;
+        }
+
+        .back-link:hover {
+            color: var(--text-primary);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        .brand-hl {
+            background: linear-gradient(135deg, var(--accent), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 2px 8px;
+            background: linear-gradient(135deg, var(--accent), var(--cyan));
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            color: white;
+            -webkit-text-fill-color: white;
+            text-transform: uppercase;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: var(--text-muted);
+            padding: 4px 10px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+            animation: statusPulse 2s ease-in-out infinite;
+        }
+
+        .status-dot.disconnected {
+            background: var(--red);
+            box-shadow: 0 0 8px rgba(239, 68, 68, 0.5);
+            animation: none;
+        }
+
+        .status-dot.connecting {
+            background: var(--orange);
+            box-shadow: 0 0 8px rgba(245, 158, 11, 0.5);
+        }
+
+        @keyframes statusPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .btn-settings {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 14px;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.25);
+            border-radius: 8px;
+            color: var(--accent-light);
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-family: inherit;
+        }
+
+        .btn-settings:hover {
+            background: rgba(99, 102, 241, 0.2);
+            border-color: rgba(99, 102, 241, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .btn-settings svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .btn-new-chat {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 14px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            border-radius: 8px;
+            color: var(--green);
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-family: inherit;
+        }
+
+        .btn-new-chat:hover {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: rgba(16, 185, 129, 0.4);
+            transform: translateY(-1px);
+        }
+
+        /* ===== CHAT CONTAINER ===== */
+        .chat-container {
+            position: fixed;
+            top: var(--navbar-height);
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            z-index: 1;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px 20px;
+            padding-bottom: 20px;
+            scroll-behavior: smooth;
+        }
+
+        .chat-messages::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .chat-messages::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: rgba(99, 102, 241, 0.2);
+            border-radius: 10px;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb:hover {
+            background: rgba(99, 102, 241, 0.35);
+        }
+
+        /* ===== WELCOME STATE ===== */
+        .welcome-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100%;
+            padding: 40px 20px;
+            text-align: center;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .welcome-avatar {
+            width: 88px;
+            height: 88px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(6, 182, 212, 0.1));
+            border: 2px solid rgba(99, 102, 241, 0.2);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 42px;
+            margin-bottom: 24px;
+            animation: float 3s ease-in-out infinite;
+            box-shadow: 0 8px 32px rgba(99, 102, 241, 0.15);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .welcome-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            letter-spacing: -0.02em;
+        }
+
+        .welcome-subtitle {
+            font-size: 15px;
+            color: var(--text-secondary);
+            max-width: 520px;
+            line-height: 1.6;
+            margin-bottom: 36px;
+        }
+
+        .welcome-features {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 600px;
+        }
+
+        .welcome-feature {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: var(--text-secondary);
+            font-size: 13px;
+            font-weight: 400;
+        }
+
+        .welcome-feature .feat-icon {
+            font-size: 16px;
+        }
+
+        .start-btn {
+            margin-top: 28px;
+            padding: 14px 32px;
+            background: linear-gradient(135deg, var(--accent), #7c3aed);
+            border: none;
+            border-radius: 14px;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .start-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(99, 102, 241, 0.45);
+        }
+
+        .start-btn:active {
+            transform: translateY(0);
+        }
+
+        /* ===== MESSAGE BUBBLES ===== */
+        .message-wrapper {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 16px;
+            animation: messageIn 0.35s ease-out;
+            max-width: 820px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @keyframes messageIn {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message-wrapper.user {
+            flex-direction: row-reverse;
+        }
+
+        .msg-avatar {
+            flex-shrink: 0;
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            margin-top: 2px;
+        }
+
+        .msg-avatar.ai {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(6, 182, 212, 0.1));
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .msg-avatar.user {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            font-size: 14px;
+        }
+
+        .msg-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .msg-bubble {
+            padding: 14px 18px;
+            border-radius: 16px;
+            font-size: 14px;
+            line-height: 1.65;
+            word-wrap: break-word;
+            position: relative;
+        }
+
+        .msg-bubble p { margin-bottom: 8px; }
+        .msg-bubble p:last-child { margin-bottom: 0; }
+        .msg-bubble ul, .msg-bubble ol { margin: 8px 0; padding-left: 20px; }
+        .msg-bubble li { margin-bottom: 4px; }
+        .msg-bubble strong { color: var(--accent-light); font-weight: 600; }
+        .msg-bubble code {
+            background: rgba(0,0,0,0.3);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-family: 'Fira Code', monospace;
+        }
+        .msg-bubble pre {
+            background: rgba(0,0,0,0.35);
+            padding: 12px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 8px 0;
+        }
+        .msg-bubble pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .message-wrapper.ai .msg-bubble {
+            background: var(--bg-card);
+            border: 1px solid rgba(99, 102, 241, 0.12);
+            border-top-left-radius: 4px;
+            color: var(--text-primary);
+        }
+
+        .message-wrapper.user .msg-bubble {
+            background: linear-gradient(135deg, var(--accent), #7c3aed);
+            border-top-right-radius: 4px;
+            color: white;
+        }
+
+        .message-wrapper.user .msg-bubble strong {
+            color: rgba(255,255,255,0.95);
+        }
+
+        .message-wrapper.system .msg-bubble {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            color: #fca5a5;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .message-wrapper.system {
+            justify-content: center;
+        }
+
+        .msg-time {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 6px;
+            padding: 0 4px;
+        }
+
+        .message-wrapper.user .msg-time {
+            text-align: right;
+        }
+
+        /* ===== RESULT TABLE IN CHAT ===== */
+        .msg-bubble table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            font-size: 13px;
+        }
+
+        .msg-bubble table th {
+            background: rgba(99, 102, 241, 0.15);
+            color: var(--accent-light);
+            font-weight: 600;
+            padding: 8px 10px;
+            text-align: left;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+            white-space: nowrap;
+        }
+
+        .msg-bubble table td {
+            padding: 7px 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+        }
+
+        .msg-bubble table tr:hover td {
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .msg-bubble table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .msg-bubble .ipk-highlight {
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        /* ===== TYPING INDICATOR ===== */
+        .typing-indicator-wrapper {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 16px;
+            max-width: 820px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: messageIn 0.3s ease-out;
+        }
+
+        .typing-bubble {
+            background: var(--bg-card);
+            border: 1px solid rgba(99, 102, 241, 0.12);
+            border-radius: 16px;
+            border-top-left-radius: 4px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .typing-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--accent-light);
+            animation: typingBounce 1.4s ease-in-out infinite;
+        }
+
+        .typing-dot:nth-child(2) { animation-delay: 0.15s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes typingBounce {
+            0%, 60%, 100% {
+                transform: translateY(0);
+                opacity: 0.4;
+            }
+            30% {
+                transform: translateY(-8px);
+                opacity: 1;
+            }
+        }
+
+        /* ===== LOADING OVERLAY ===== */
+        .loading-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 14, 26, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 300;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            transition: opacity 0.4s ease;
+        }
+
+        .loading-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-spinner {
+            width: 48px;
+            height: 48px;
+            border: 3px solid rgba(99, 102, 241, 0.15);
+            border-top-color: var(--accent-light);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* ===== INPUT BAR ===== */
+        .input-bar {
+            padding: 16px 20px 14px;
+            background: rgba(17, 24, 39, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .input-inner {
+            max-width: 820px;
+            margin: 0 auto;
+        }
+
+        .input-row {
+            display: flex;
+            align-items: flex-end;
+            gap: 10px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 6px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .input-row:focus-within {
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.08), 0 4px 16px rgba(99, 102, 241, 0.1);
+        }
+
+        .input-row textarea {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+            padding: 10px 14px;
+            resize: none;
+            min-height: 42px;
+            max-height: 120px;
+            scrollbar-width: none;
+        }
+
+        .input-row textarea::-webkit-scrollbar {
+            display: none;
+        }
+
+        .input-row textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        .btn-send {
+            flex-shrink: 0;
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            border: none;
+            background: linear-gradient(135deg, var(--accent), #7c3aed);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-send:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-send:hover::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 12px;
+            animation: sendPulse 1s ease-in-out infinite;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        @keyframes sendPulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.15); opacity: 0; }
+        }
+
+        .btn-send:active {
+            transform: scale(0.95);
+        }
+
+        .btn-send:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn-send:disabled::after {
+            display: none;
+        }
+
+        .btn-send svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .input-hint {
+            text-align: center;
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 10px;
+            letter-spacing: 0.01em;
+        }
+
+        .input-hint span {
+            color: var(--accent-light);
+        }
+
+        /* ===== INLINE SUGGESTION CHIPS ===== */
+        .inline-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+            max-width: 820px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 0.4s ease-out;
+        }
+
+        .inline-chip {
+            padding: 8px 16px;
+            background: rgba(99, 102, 241, 0.08);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 20px;
+            color: var(--accent-light);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-family: inherit;
+        }
+
+        .inline-chip:hover {
+            background: rgba(99, 102, 241, 0.18);
+            border-color: rgba(99, 102, 241, 0.4);
+            transform: translateY(-1px);
+        }
+
+        /* ===== MODAL OVERLAY ===== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: rgba(26, 31, 53, 0.95);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            border-radius: 20px;
+            padding: 32px;
+            width: 100%;
+            max-width: 460px;
+            transform: translateY(20px) scale(0.97);
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-overlay.active .modal {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .modal-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .modal-close {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            border: none;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            font-size: 18px;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+        }
+
+        .modal-body p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-hint {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 6px;
+            line-height: 1.4;
+        }
+
+        .form-hint code {
+            background: rgba(99, 102, 241, 0.12);
+            padding: 1px 5px;
+            border-radius: 4px;
+            font-size: 11px;
+            color: var(--accent-light);
+        }
+
+        .input-with-icon {
+            position: relative;
+        }
+
+        .input-with-icon .input-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            pointer-events: none;
+        }
+
+        .input-with-icon input {
+            width: 100%;
+            padding: 12px 14px 12px 38px;
+            background: rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.25s ease;
+        }
+
+        .input-with-icon input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .input-with-icon input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .form-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .input-with-toggle {
+            position: relative;
+        }
+
+        .input-with-toggle input {
+            width: 100%;
+            padding: 12px 44px 12px 14px;
+            background: rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.25s ease;
+        }
+
+        .input-with-toggle input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .input-with-toggle input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .toggle-visibility {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s ease;
+        }
+
+        .toggle-visibility:hover {
+            color: var(--text-secondary);
+        }
+
+        .toggle-visibility svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .btn-save-key {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, var(--accent), #7c3aed);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-save-key:hover {
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.35);
+            transform: translateY(-1px);
+        }
+
+        .btn-save-key:active {
+            transform: translateY(0);
+        }
+
+        .key-status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            margin-top: 12px;
+            padding: 8px 12px;
+            border-radius: 8px;
+        }
+
+        .key-status.has-key {
+            color: var(--green);
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.15);
+        }
+
+        .key-status.no-key {
+            color: var(--orange);
+            background: rgba(245, 158, 11, 0.08);
+            border: 1px solid rgba(245, 158, 11, 0.15);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 640px) {
+            .navbar {
+                padding: 0 14px;
+            }
+
+            .nav-brand {
+                font-size: 16px;
+            }
+
+            .back-link span.back-text {
+                display: none;
+            }
+
+            .btn-settings span {
+                display: none;
+            }
+
+            .btn-settings {
+                padding: 7px 10px;
+            }
+
+            .btn-new-chat span {
+                display: none;
+            }
+
+            .btn-new-chat {
+                padding: 7px 10px;
+            }
+
+            .chat-messages {
+                padding: 16px 12px;
+            }
+
+            .input-bar {
+                padding: 12px 12px 10px;
+            }
+
+            .welcome-title {
+                font-size: 22px;
+            }
+
+            .welcome-subtitle {
+                font-size: 14px;
+            }
+
+            .modal {
+                padding: 24px;
+                margin: 12px;
+            }
+
+            .welcome-features {
+                gap: 8px;
+            }
+
+            .welcome-feature {
+                padding: 8px 14px;
+                font-size: 12px;
+            }
+
+            .msg-bubble table {
+                font-size: 11px;
+            }
+
+            .msg-bubble table th,
+            .msg-bubble table td {
+                padding: 5px 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- LOADING OVERLAY -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Memuat data mahasiswa...</div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="index.html" class="back-link">
+                <span>←</span>
+                <span class="back-text">Beranda</span>
+            </a>
+            <div class="nav-brand">
+                <img src="zyvanta_logo.png" alt="Zyvanta" style="width:28px;height:28px;border-radius:6px;object-fit:contain;"> <span class="brand-hl">Zyvanta</span>
+                <span class="nav-badge">AI</span>
+            </div>
+        </div>
+        <div class="nav-right">
+            <div class="status-indicator">
+                <div class="status-dot" id="statusDot"></div>
+                <span id="statusText">Memuat data...</span>
+            </div>
+            <button class="btn-new-chat" onclick="resetChat()" title="Mulai pencarian baru">
+                <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                <span>Baru</span>
+            </button>
+            <button class="btn-settings" onclick="openSettingsModal()">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                <span>API Settings</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- CHAT CONTAINER -->
+    <div class="chat-container">
+        <div class="chat-messages" id="chatMessages">
+            <!-- Welcome State -->
+            <div class="welcome-state" id="welcomeState">
+                <div class="welcome-avatar">🤖</div>
+                <h1 class="welcome-title">Zyvanta AI — Talent Matching</h1>
+                <p class="welcome-subtitle">Asisten cerdas untuk mencocokkan mahasiswa Data Science dengan posisi magang yang sesuai. Saya akan memandu Anda langkah demi langkah.</p>
+                <div class="welcome-features">
+                    <div class="welcome-feature">
+                        <span class="feat-icon">🎯</span>
+                        Pencarian Terarah
+                    </div>
+                    <div class="welcome-feature">
+                        <span class="feat-icon">📊</span>
+                        Data Mahasiswa Real-time
+                    </div>
+                    <div class="welcome-feature">
+                        <span class="feat-icon">🧠</span>
+                        AI-Powered Matching
+                    </div>
+                    <div class="welcome-feature">
+                        <span class="feat-icon">📋</span>
+                        Hasil Terstruktur
+                    </div>
+                </div>
+                <button class="start-btn" id="startBtn" onclick="startConversation()">
+                    🚀 Mulai Pencarian Talent
+                </button>
+            </div>
+        </div>
+
+        <!-- Input Bar -->
+        <div class="input-bar">
+            <div class="input-inner">
+                <div class="input-row">
+                    <textarea id="messageInput"
+                              placeholder="Ketik jawaban Anda di sini..."
+                              rows="1"
+                              onkeydown="handleKeyDown(event)"
+                              oninput="autoResize(this)"
+                              disabled></textarea>
+                    <button class="btn-send" id="btnSend" onclick="sendMessage()" disabled>
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19V5m0 0l-7 7m7-7l7 7"/></svg>
+                    </button>
+                </div>
+                <div class="input-hint">Powered by <span>OpenAI</span> · Tekan Enter untuk mengirim</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SETTINGS MODAL -->
+    <div class="modal-overlay" id="settingsModal">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    API Settings
+                </div>
+                <button class="modal-close" onclick="closeSettingsModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <p>Konfigurasi koneksi ke API. Anda bisa menggunakan OpenAI langsung atau provider lain yang kompatibel (OpenRouter, Groq, dll). Data disimpan secara lokal di browser.</p>
+                
+                <div class="form-group">
+                    <label class="form-label">Base URL</label>
+                    <div class="input-with-icon">
+                        <svg class="input-icon" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+                        <input type="text"
+                               id="baseUrlInput"
+                               placeholder="https://api.openai.com/v1"
+                               autocomplete="off"
+                               spellcheck="false">
+                    </div>
+                    <div class="form-hint">Kosongkan untuk default OpenAI. Contoh lain: <code>https://openrouter.ai/api/v1</code></div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">API Key</label>
+                    <div class="input-with-toggle">
+                        <input type="password"
+                               id="apiKeyInput"
+                               placeholder="sk-proj-..."
+                               autocomplete="off"
+                               spellcheck="false">
+                        <button class="toggle-visibility" onclick="toggleKeyVisibility()">
+                            <svg id="eyeIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <button class="btn-save-key" onclick="saveSettings()">💾 Simpan Pengaturan</button>
+                <div id="keyStatus"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // ============================================================
+    // ZYVANTA AI - GUIDED TALENT MATCHING CHAT
+    // Uses OpenAI API with structured conversation flow
+    // ============================================================
+
+    // ===== CONVERSATION STATES =====
+    const STATE = {
+        IDLE: 'idle',
+        GREETING: 'greeting',
+        WAIT_PROFESSION: 'wait_profession',
+        WAIT_JOBDESC: 'wait_jobdesc',
+        PROCESSING: 'processing',
+        SHOW_RESULTS: 'show_results',
+        ASK_AGAIN: 'ask_again'
+    };
+
+    // ===== CURRICULUM DATA (embedded for AI matching) =====
+    const CURRICULUM = [
+        { id: 'sem1', name: 'Semester 1', courses: ['Foundations of Data Science','Design Thinking','Discrete Mathematics','Human-Computer Interaction','Algorithms','Mathematical and Statistical Foundations','Networks','Differential Calculus'] },
+        { id: 'sem2', name: 'Semester 2', courses: ['Object-Oriented Programming','Database Systems','Data Structures','Web Client Development','Statistical Thinking','Communication Protocols','Data Wrangling'] },
+        { id: 'sem3', name: 'Semester 3', courses: ['Web Application Development','Advanced Database Systems','Stochastic Modeling','Numerical Methods','Advanced Computational Mathematics','Data Visualization','Optimization Methods'] },
+        { id: 'sem4', name: 'Semester 4', courses: ['Text Mining','Data Warehousing and Mining','Technical / Professional Writing','Mobile Computing','Big Data Analytics','Advanced Methods for Data Analytics','Data Privacy and Security'] },
+        { id: 'sem5', name: 'Semester 5', courses: ['Professional Ethics','Deep Learning','Natural Language Processing (NLP)','Computer Vision','Big Data Infrastructure','Distributed Systems','Business Intelligence Tools','Predictive Analytics'] },
+        { id: 'sem6', name: 'Semester 6', courses: ['Data Science Project Management','Advanced Data Processing and ETL','Data Wrangling and Preprocessing Techniques','Statistical Modeling and Inference','Business Communication and Data Presentation'] },
+        { id: 'sem7', name: 'Semester 7', courses: ['Machine Learning Applications','Big Data Technologies and Cloud Integration','Predictive Analytics and Forecasting','Data Ethics and Privacy','Capstone Data Science Project'] },
+        { id: 'sem8', name: 'Semester 8', courses: ['Capstone Project','Portfolio','Scientific Publication','Thesis','Academic Writing in English','Research Methodology'] }
+    ];
+
+    // ===== STATE =====
+    let currentState = STATE.IDLE;
+    let currentProfession = '';
+    let currentJobDesc = '';
+    let isProcessing = false;
+    let allStudents = [];
+    let portfolioLookup = {};
+    let dataLoaded = false;
+
+    // ===== DOM REFS =====
+    const chatMessages = document.getElementById('chatMessages');
+    const welcomeState = document.getElementById('welcomeState');
+    const messageInput = document.getElementById('messageInput');
+    const btnSend = document.getElementById('btnSend');
+    const statusDot = document.getElementById('statusDot');
+    const statusText = document.getElementById('statusText');
+
+    // ===== INIT =====
+    async function init() {
+        await loadAllData();
+
+        const savedKey = getApiKey();
+        if (savedKey) {
+            updateConnectionStatus('ready');
+        } else {
+            updateConnectionStatus('no-key');
+        }
+    }
+
+    // ===== DATA LOADING =====
+    async function loadAllData() {
+        const overlay = document.getElementById('loadingOverlay');
+        overlay.classList.remove('hidden');
+
+        try {
+            await Promise.all([
+                loadStudentData(),
+                loadPortfolioLookup()
+            ]);
+            dataLoaded = true;
+            console.log(`Data loaded: ${allStudents.length} students, ${Object.keys(portfolioLookup).length} portfolios`);
+        } catch (err) {
+            console.error('Error loading data:', err);
+        }
+
+        overlay.classList.add('hidden');
+    }
+
+    async function fetchExcel(filename) {
+        const cacheBuster = '?t=' + Date.now();
+        const resp = await fetch(filename + cacheBuster, { cache: 'no-store' });
+        const ab = await resp.arrayBuffer();
+        return XLSX.read(ab, { type: 'array' });
+    }
+
+    async function loadStudentData() {
+        try {
+            const magangLookup = await loadMagangLookup();
+            const ipkLookup = await loadIPKLookup();
+
+            const wb = await fetchExcel('data_mahasiswa.xlsx');
+            const ws = wb.Sheets[wb.SheetNames[0]];
+            const raw = XLSX.utils.sheet_to_json(ws);
+
+            allStudents = raw.map(row => {
+                const nim = String(row['NIM'] || row['nim'] || '').trim();
+                const nama = row['Nama'] || row['nama'] || '';
+                const kelasRaw = row['Kelas Perkuliahan'] || row['Kelas'] || row['kelas'] || '';
+                const semester = extractSemester(kelasRaw);
+                const namaUpper = nama.trim().toUpperCase();
+                const dataMagang = magangLookup[namaUpper] || 0;
+                const ipkTerakhir = ipkLookup[nim] || 0;
+
+                return { nim, nama, kelasRaw, semester, dataMagang, ipkTerakhir };
+            });
+
+            console.log('Students loaded:', allStudents.length);
+        } catch (err) {
+            console.error('Error loading student data:', err);
+        }
+    }
+
+    async function loadMagangLookup() {
+        const lookup = {};
+        try {
+            const wb = await fetchExcel('data_magang.xlsx');
+            const ws = wb.Sheets[wb.SheetNames[0]];
+            const data = XLSX.utils.sheet_to_json(ws);
+
+            data.forEach(row => {
+                const major = (row['Major '] || row['Major'] || row['major'] || '').trim().toLowerCase();
+                if (major.includes('data science') || major.includes('sains data')) {
+                    const name = (row['Student Name '] || row['Student Name'] || row['Nama'] || '').trim().toUpperCase();
+                    if (name) lookup[name] = (lookup[name] || 0) + 1;
+                }
+            });
+        } catch (err) {
+            console.warn('Could not load data_magang.xlsx:', err);
+        }
+        return lookup;
+    }
+
+    async function loadIPKLookup() {
+        const lookup = {};
+        try {
+            const wb = await fetchExcel('ipk_terakhir.xlsx');
+            const ws = wb.Sheets[wb.SheetNames[0]];
+            const data = XLSX.utils.sheet_to_json(ws);
+
+            data.forEach(row => {
+                const nim = String(row['NIM'] || row['nim'] || '').trim();
+                const ipk = parseFloat(row['IPK'] || row['ipk'] || row['ipk_terakhir'] || 0) || 0;
+                if (nim) lookup[nim] = ipk;
+            });
+        } catch (err) {
+            console.warn('Could not load ipk_terakhir.xlsx:', err);
+        }
+        return lookup;
+    }
+
+    async function loadPortfolioLookup() {
+        portfolioLookup = {};
+        const portfolioFiles = { 'sem2': 'portfolio_semester_2.xlsx' };
+
+        for (const [semId, file] of Object.entries(portfolioFiles)) {
+            try {
+                const wb = await fetchExcel(file);
+                for (const sheetName of wb.SheetNames) {
+                    const ws = wb.Sheets[sheetName];
+                    const data = XLSX.utils.sheet_to_json(ws);
+                    data.forEach(row => {
+                        const nim = String(row['NIM'] || row['nim'] || '').trim();
+                        if (!nim) return;
+                        if (!portfolioLookup[nim]) portfolioLookup[nim] = [];
+                        portfolioLookup[nim].push({
+                            semester: semId,
+                            course: sheetName
+                        });
+                    });
+                }
+            } catch (err) {
+                console.error('Error loading portfolio file:', file, err);
+            }
+        }
+    }
+
+    function extractSemester(kelasRaw) {
+        if (!kelasRaw) return null;
+        const match = String(kelasRaw).match(/^(\d+)/);
+        return match ? parseInt(match[1]) : null;
+    }
+
+    // ===== TIME-BASED GREETING =====
+    function getTimeGreeting() {
+        const hour = new Date().getHours();
+        if (hour >= 5 && hour < 11) return 'Selamat pagi';
+        if (hour >= 11 && hour < 15) return 'Selamat siang';
+        if (hour >= 15 && hour < 18) return 'Selamat sore';
+        return 'Selamat malam';
+    }
+
+    // ===== START CONVERSATION =====
+    function startConversation() {
+        const apiKey = getApiKey();
+        if (!apiKey) {
+            openSettingsModal();
+            return;
+        }
+
+        hideWelcome();
+        enableInput();
+
+        // Reset conversation history
+        conversationHistory = [];
+
+        const greeting = getTimeGreeting();
+        const aiMsg = `${greeting}! 👋\n\nSaya **Zyvanta AI**, asisten pencocokan talenta magang mahasiswa Data Science.\n\nSaya akan membantu Anda menemukan mahasiswa yang paling sesuai dengan kebutuhan posisi magang Anda.\n\nSilakan masukkan **nama profesi/posisi** yang tersedia untuk magang.\n\n_Contoh: Data Analyst, Machine Learning Engineer, Data Engineer, dll._`;
+
+        // Add greeting to conversation history
+        conversationHistory.push({ role: 'assistant', content: aiMsg });
+
+        addMessage(aiMsg, 'ai');
+        showSuggestionChips(['Data Analyst', 'Data Engineer', 'Machine Learning Engineer', 'Business Intelligence Analyst', 'Data Scientist']);
+        currentState = STATE.WAIT_PROFESSION;
+    }
+
+    // ===== SEND MESSAGE =====
+    function sendMessage() {
+        const text = messageInput.value.trim();
+        if (!text || isProcessing) return;
+
+        const apiKey = getApiKey();
+        if (!apiKey) {
+            addMessage('⚠️ API key belum dikonfigurasi. Silakan klik tombol "OpenAI API Key" di navbar.', 'system');
+            openSettingsModal();
+            return;
+        }
+
+        hideWelcome();
+        removeSuggestionChips();
+        addMessage(text, 'user');
+        messageInput.value = '';
+        messageInput.style.height = 'auto';
+
+        handleUserInput(text);
+    }
+
+    // ===== STATE MACHINE HANDLER =====
+    async function handleUserInput(text) {
+        switch (currentState) {
+            case STATE.IDLE:
+                // User typed before clicking start — treat as start
+                startConversation();
+                break;
+
+            case STATE.WAIT_PROFESSION:
+                await handleProfessionInput(text);
+                break;
+
+            case STATE.WAIT_JOBDESC:
+                await handleJobDescInput(text);
+                break;
+
+            case STATE.ASK_AGAIN:
+                await handleAskAgain(text);
+                break;
+
+            default:
+                addMessage('Mohon tunggu, saya sedang memproses permintaan sebelumnya...', 'ai');
+                break;
+        }
+    }
+
+    // ===== CONVERSATION HISTORY FOR OPENAI =====
+    let conversationHistory = [];
+
+    function getSystemPrompt() {
+        return `Kamu adalah Zyvanta AI, asisten pencocokan talenta magang mahasiswa Data Science yang SANGAT KETAT dan TERSTRUKTUR.
+
+IDENTITAS:
+- Nama: Zyvanta AI
+- Fungsi: Mencocokkan mahasiswa Data Science dengan posisi magang
+- Bahasa: Indonesia (formal tapi ramah)
+
+ATURAN MUTLAK — WAJIB DIPATUHI:
+1. Kamu HANYA boleh membahas topik terkait: pencarian talent magang, data mahasiswa, portfolio mahasiswa, posisi magang, dan job description.
+2. Jika user menanyakan APAPUN di luar topik di atas (politik, cuaca, cerita, coding, dll), TOLAK DENGAN TEGAS dan arahkan kembali ke topik pencarian talent.
+3. Jangan pernah menjawab pertanyaan umum, membuat kode, menulis cerita, atau apapun yang tidak terkait pencarian talent magang.
+4. Jika user mengirim sapaan (halo, hi, hai, etc), balas dengan ramah TAPI langsung arahkan ke topik — tanyakan profesi/posisi magang yang dicari.
+
+ALUR PERCAKAPAN WAJIB:
+- Langkah 1: Tanya nama profesi/posisi magang yang dicari
+- Langkah 2: Setelah dapat profesi, tanya job description/requirement untuk posisi tersebut
+- Langkah 3: Setelah dapat job desc, lakukan pencocokan dengan data mahasiswa yang akan diberikan
+
+VALIDASI INPUT:
+- Saat menunggu PROFESI: jika user mengirim sesuatu yang bukan nama profesi/posisi (misal pertanyaan random, kalimat panjang yang bukan posisi), tolak dan minta ulang nama profesi yang valid.
+- Saat menunggu JOB DESC: jika user mengirim sesuatu yang tidak relevan dengan requirement pekerjaan, tolak dan minta ulang.
+- Profesi yang valid contohnya: Data Analyst, Data Engineer, Machine Learning Engineer, Data Scientist, Business Intelligence Analyst, Full Stack Developer, Software Engineer, dll.
+
+FORMAT HASIL MATCHING:
+- WAJIB dalam tabel markdown dengan kolom: No, NIM, Nama, Semester, IPK, Mata Kuliah Relevan
+- Urutkan dari IPK tertinggi ke terendah
+- Maksimal 15 mahasiswa
+- Kolom "Mata Kuliah Relevan" berisi mata kuliah portfolio yang berhubungan dengan job description
+- Setelah tabel, berikan ringkasan singkat
+
+RESPOND dalam format yang BERSIH dan TERSTRUKTUR. Gunakan bold (**text**) untuk menekankan hal penting.
+
+Daftar mata kuliah kurikulum Data Science:
+${CURRICULUM.map(s => s.name + ': ' + s.courses.join(', ')).join('\n')}`;
+    }
+
+    // ===== HANDLE PROFESSION INPUT =====
+    async function handleProfessionInput(text) {
+        isProcessing = true;
+        disableInput();
+        showTypingIndicator();
+        updateConnectionStatus('connecting');
+
+        try {
+            // Add user message to history
+            conversationHistory.push({ role: 'user', content: text });
+
+            // Ask OpenAI to validate and respond
+            const validationPrompt = `User baru saja mengirim: "${text}"
+
+Status saat ini: MENUNGGU NAMA PROFESI/POSISI MAGANG.
+
+Tugasmu:
+1. Jika ini adalah nama profesi/posisi yang valid (contoh: Data Analyst, Data Engineer, ML Engineer, dll) → Konfirmasi posisinya dan minta user mengirimkan job description/requirement untuk posisi tersebut. PENTING: Mulai respons dengan [VALID_PROFESSION] (tag ini TIDAK ditampilkan ke user).
+2. Jika ini BUKAN nama profesi (pertanyaan random, off-topic, dll) → Tolak dengan tegas tapi ramah, jelaskan kamu hanya bisa membantu pencarian talent magang, dan minta ulang nama profesi. PENTING: Mulai respons dengan [INVALID] (tag ini TIDAK ditampilkan ke user).
+
+Jawab dalam bahasa Indonesia.`;
+
+            conversationHistory.push({ role: 'user', content: validationPrompt });
+
+            const result = await callOpenAIConversation();
+            hideTypingIndicator();
+
+            if (result) {
+                // Check AI's validation
+                const isValid = result.startsWith('[VALID_PROFESSION]');
+                const cleanResponse = result.replace(/^\[(VALID_PROFESSION|INVALID)\]\s*/i, '').trim();
+
+                // Replace the validation prompt with original user message in history
+                conversationHistory.pop(); // remove validation prompt
+                conversationHistory.push({ role: 'assistant', content: cleanResponse });
+
+                if (isValid) {
+                    currentProfession = text;
+                    currentState = STATE.WAIT_JOBDESC;
+                    addMessage(cleanResponse, 'ai');
+                } else {
+                    // Stay in WAIT_PROFESSION state
+                    addMessage(cleanResponse, 'ai');
+                    showSuggestionChips(['Data Analyst', 'Data Engineer', 'Machine Learning Engineer', 'Business Intelligence Analyst', 'Data Scientist']);
+                }
+            } else {
+                addMessage('Maaf, terjadi kesalahan. Silakan coba lagi.', 'system');
+            }
+        } catch (error) {
+            hideTypingIndicator();
+            console.error('Profession validation error:', error);
+            addMessage(`❌ Error: ${error.message}`, 'system');
+        }
+
+        isProcessing = false;
+        enableInput();
+        updateConnectionStatus('ready');
+    }
+
+    // ===== HANDLE JOB DESC INPUT =====
+    async function handleJobDescInput(text) {
+        isProcessing = true;
+        disableInput();
+        showTypingIndicator();
+        updateConnectionStatus('connecting');
+
+        try {
+            conversationHistory.push({ role: 'user', content: text });
+
+            const validationPrompt = `User baru saja mengirim: "${text}"
+
+Status saat ini: MENUNGGU JOB DESCRIPTION/REQUIREMENT untuk posisi "${currentProfession}".
+
+Tugasmu:
+1. Jika ini adalah job description/requirement yang valid dan relevan dengan posisi magang → Konfirmasi dan katakan bahwa kamu akan memproses data. PENTING: Mulai respons dengan [VALID_JOBDESC] (tag ini TIDAK ditampilkan ke user).
+2. Jika ini BUKAN job description (off-topic, pertanyaan random, terlalu pendek/tidak jelas, dll) → Tolak dengan tegas tapi ramah dan minta ulang job description yang valid. PENTING: Mulai respons dengan [INVALID] (tag ini TIDAK ditampilkan ke user).
+
+Jawab dalam bahasa Indonesia.`;
+
+            conversationHistory.push({ role: 'user', content: validationPrompt });
+
+            const result = await callOpenAIConversation();
+            hideTypingIndicator();
+
+            if (result) {
+                const isValid = result.startsWith('[VALID_JOBDESC]');
+                const cleanResponse = result.replace(/^\[(VALID_JOBDESC|INVALID)\]\s*/i, '').trim();
+
+                conversationHistory.pop(); // remove validation prompt
+                conversationHistory.push({ role: 'assistant', content: cleanResponse });
+
+                if (isValid) {
+                    currentJobDesc = text;
+                    currentState = STATE.PROCESSING;
+                    addMessage(cleanResponse, 'ai');
+
+                    // Now process the actual matching
+                    await processMatching();
+                } else {
+                    addMessage(cleanResponse, 'ai');
+                    // Stay in WAIT_JOBDESC
+                }
+            } else {
+                addMessage('Maaf, terjadi kesalahan. Silakan coba lagi.', 'system');
+            }
+        } catch (error) {
+            hideTypingIndicator();
+            console.error('Job desc validation error:', error);
+            addMessage(`❌ Error: ${error.message}`, 'system');
+        }
+
+        isProcessing = false;
+        enableInput();
+        updateConnectionStatus('ready');
+    }
+
+    // ===== HANDLE ASK AGAIN =====
+    async function handleAskAgain(text) {
+        isProcessing = true;
+        disableInput();
+        showTypingIndicator();
+        updateConnectionStatus('connecting');
+
+        try {
+            conversationHistory.push({ role: 'user', content: text });
+
+            const validationPrompt = `User baru saja mengirim: "${text}"
+
+Status saat ini: MENANYAKAN APAKAH USER INGIN MENCARI POSISI MAGANG LAIN.
+
+Tugasmu:
+1. Jika user menjawab YA/IYA/OK/LANJUT/TENTU/MAU atau sejenisnya → Balas bahwa kamu siap mencari lagi dan minta nama profesi/posisi baru. PENTING: Mulai respons dengan [YES] (tag ini TIDAK ditampilkan ke user).
+2. Jika user menjawab TIDAK/NO/CUKUP/SELESAI/SUDAH atau sejenisnya → Ucapkan terima kasih dan tutup percakapan dengan ramah. PENTING: Mulai respons dengan [NO] (tag ini TIDAK ditampilkan ke user).
+3. Jika jawaban TIDAK JELAS atau off-topic → Minta user menjawab Ya atau Tidak. PENTING: Mulai respons dengan [UNCLEAR] (tag ini TIDAK ditampilkan ke user).
+
+Jawab dalam bahasa Indonesia.`;
+
+            conversationHistory.push({ role: 'user', content: validationPrompt });
+
+            const result = await callOpenAIConversation();
+            hideTypingIndicator();
+
+            if (result) {
+                let tag = '';
+                if (result.startsWith('[YES]')) tag = 'YES';
+                else if (result.startsWith('[NO]')) tag = 'NO';
+                else tag = 'UNCLEAR';
+
+                const cleanResponse = result.replace(/^\[(YES|NO|UNCLEAR)\]\s*/i, '').trim();
+                conversationHistory.pop();
+                conversationHistory.push({ role: 'assistant', content: cleanResponse });
+
+                addMessage(cleanResponse, 'ai');
+
+                if (tag === 'YES') {
+                    currentProfession = '';
+                    currentJobDesc = '';
+                    currentState = STATE.WAIT_PROFESSION;
+                    showSuggestionChips(['Data Analyst', 'Data Engineer', 'Machine Learning Engineer', 'Business Intelligence Analyst', 'Data Scientist']);
+                } else if (tag === 'NO') {
+                    currentState = STATE.IDLE;
+                    disableInput();
+                    isProcessing = false;
+                    updateConnectionStatus('ready');
+                    return;
+                } else {
+                    showSuggestionChips(['Ya', 'Tidak']);
+                }
+            }
+        } catch (error) {
+            hideTypingIndicator();
+            console.error('Ask again error:', error);
+            addMessage(`❌ Error: ${error.message}`, 'system');
+        }
+
+        isProcessing = false;
+        enableInput();
+        updateConnectionStatus('ready');
+    }
+
+    // ===== PROCESS MATCHING =====
+    async function processMatching() {
+        isProcessing = true;
+        updateConnectionStatus('connecting');
+        showTypingIndicator();
+
+        try {
+            // Step 1: Filter students locally
+            const candidates = allStudents.filter(s => {
+                return s.ipkTerakhir >= 3.0 && s.dataMagang <= 2;
+            });
+
+            if (candidates.length === 0) {
+                hideTypingIndicator();
+                addMessage('Maaf, tidak ditemukan mahasiswa yang memenuhi kriteria (IPK ≥ 3.0 dan pengalaman magang 0-2).\n\nApakah Anda ingin mencari posisi lain?', 'ai');
+                showSuggestionChips(['Ya', 'Tidak']);
+                currentState = STATE.ASK_AGAIN;
+                isProcessing = false;
+                enableInput();
+                updateConnectionStatus('ready');
+                return;
+            }
+
+            // Step 2: Get portfolio courses for each candidate
+            const candidatesWithPortfolio = candidates.map(s => {
+                const portfolioCourses = portfolioLookup[s.nim] || [];
+                return {
+                    ...s,
+                    portfolioCourses: portfolioCourses.map(p => p.course)
+                };
+            }).filter(s => s.portfolioCourses.length > 0);
+
+            // Step 3: Build data summary for OpenAI
+            const candidatesSummary = (candidatesWithPortfolio.length > 0 ? candidatesWithPortfolio : candidates)
+                .sort((a, b) => b.ipkTerakhir - a.ipkTerakhir)
+                .slice(0, 50)
+                .map(s => ({
+                    nim: s.nim,
+                    nama: s.nama,
+                    semester: s.semester || '-',
+                    ipk: s.ipkTerakhir.toFixed(2),
+                    magang: s.dataMagang,
+                    portfolio_courses: s.portfolioCourses || []
+                }));
+
+            // Step 4: Call OpenAI to match using conversation history
+            const matchingMessage = `Posisi magang: ${currentProfession}
+Job Description/Requirement: ${currentJobDesc}
+
+Data mahasiswa yang memenuhi kriteria (IPK >= 3.0, magang 0-2):
+${JSON.stringify(candidatesSummary, null, 0)}
+
+Dari data di atas, tampilkan mahasiswa yang mata kuliahnya paling relevan dengan job description yang diberikan.
+FORMAT WAJIB: tabel markdown dengan kolom: No, NIM, Nama, Semester, IPK, Mata Kuliah Relevan.
+Urutkan dari IPK tertinggi. Maksimal 15 mahasiswa.
+Setelah tabel berikan ringkasan singkat.`;
+
+            conversationHistory.push({ role: 'user', content: matchingMessage });
+            const result = await callOpenAIConversation();
+
+            hideTypingIndicator();
+
+            if (result) {
+                conversationHistory.push({ role: 'assistant', content: result });
+                addMessage(result, 'ai', true);
+            } else {
+                addMessage('Maaf, terjadi kesalahan saat memproses data. Silakan coba lagi.', 'system');
+            }
+
+            // Ask again
+            setTimeout(() => {
+                addMessage('Apakah Anda ingin mencari posisi magang lain?', 'ai');
+                showSuggestionChips(['Ya', 'Tidak']);
+                currentState = STATE.ASK_AGAIN;
+                enableInput();
+            }, 500);
+
+        } catch (error) {
+            hideTypingIndicator();
+            console.error('Processing error:', error);
+            addMessage(`❌ Terjadi kesalahan: ${error.message}`, 'system');
+            currentState = STATE.ASK_AGAIN;
+            enableInput();
+
+            setTimeout(() => {
+                addMessage('Apakah Anda ingin mencoba lagi?', 'ai');
+                showSuggestionChips(['Ya', 'Tidak']);
+            }, 300);
+        }
+
+        isProcessing = false;
+        updateConnectionStatus('ready');
+    }
+
+    // ===== CALL OPENAI API (CONVERSATION-BASED) =====
+    async function callOpenAIConversation() {
+        const apiKey = getApiKey();
+        if (!apiKey) throw new Error('API key tidak ditemukan');
+
+        const messages = [
+            { role: 'system', content: getSystemPrompt() },
+            ...conversationHistory
+        ];
+
+        const baseUrl = getBaseUrl();
+
+        const response = await fetch('/api/openai', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                apiKey: apiKey,
+                baseUrl: baseUrl,
+                model: 'gpt-4o-mini',
+                temperature: 0.3,
+                max_tokens: 2000,
+                messages: messages
+            })
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => ({}));
+            const errorMsg = errorData?.error?.message || `HTTP ${response.status}: ${response.statusText}`;
+
+            if (response.status === 401) {
+                throw new Error('🔑 API key tidak valid atau kedaluwarsa. Silakan perbarui API key Anda.');
+            } else if (response.status === 429) {
+                throw new Error('⏳ Terlalu banyak permintaan. Silakan tunggu sebentar dan coba lagi.');
+            } else if (response.status === 403) {
+                throw new Error('🚫 Akses ditolak. Pastikan API key Anda memiliki akses ke model yang dipilih.');
+            } else {
+                throw new Error(errorMsg);
+            }
+        }
+
+        const data = await response.json();
+        return data.choices?.[0]?.message?.content || null;
+    }
+
+    // ===== API KEY & BASE URL MANAGEMENT =====
+    const DEFAULT_BASE_URL = 'https://api.openai.com/v1';
+
+    function getApiKey() {
+        return localStorage.getItem('zyvanta_openai_key') || '';
+    }
+
+    function getBaseUrl() {
+        return localStorage.getItem('zyvanta_base_url') || DEFAULT_BASE_URL;
+    }
+
+    function openSettingsModal() {
+        const modal = document.getElementById('settingsModal');
+        const keyInput = document.getElementById('apiKeyInput');
+        const urlInput = document.getElementById('baseUrlInput');
+        modal.classList.add('active');
+        const existingKey = getApiKey();
+        const existingUrl = localStorage.getItem('zyvanta_base_url') || '';
+        if (existingKey) keyInput.value = existingKey;
+        urlInput.value = existingUrl;
+        updateKeyStatus();
+        setTimeout(() => urlInput.focus(), 100);
+    }
+
+    function closeSettingsModal() {
+        document.getElementById('settingsModal').classList.remove('active');
+    }
+
+    function toggleKeyVisibility() {
+        const input = document.getElementById('apiKeyInput');
+        const eyeIcon = document.getElementById('eyeIcon');
+        if (input.type === 'password') {
+            input.type = 'text';
+            eyeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L6.59 6.59m7.532 7.532l3.29 3.29M3 3l18 18"/>';
+        } else {
+            input.type = 'password';
+            eyeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>';
+        }
+    }
+
+    function saveSettings() {
+        const key = document.getElementById('apiKeyInput').value.trim();
+        const url = document.getElementById('baseUrlInput').value.trim();
+
+        // Save base URL
+        if (url) {
+            localStorage.setItem('zyvanta_base_url', url.replace(/\/+$/, '')); // strip trailing slash
+        } else {
+            localStorage.removeItem('zyvanta_base_url');
+        }
+
+        // Save API key
+        if (key) {
+            localStorage.setItem('zyvanta_openai_key', key);
+            updateKeyStatus();
+            updateConnectionStatus('ready');
+            setTimeout(() => closeSettingsModal(), 600);
+        } else {
+            localStorage.removeItem('zyvanta_openai_key');
+            updateKeyStatus();
+            updateConnectionStatus('no-key');
+        }
+    }
+
+    function updateKeyStatus() {
+        const container = document.getElementById('keyStatus');
+        const key = getApiKey();
+        const url = getBaseUrl();
+        let html = '';
+        if (key) {
+            const masked = key.substring(0, 8) + '...' + key.substring(key.length - 4);
+            html += `<div class="key-status has-key">✓ API key tersimpan: ${masked}</div>`;
+        } else {
+            html += `<div class="key-status no-key">⚠ Belum ada API key</div>`;
+        }
+        html += `<div class="key-status ${key ? 'has-key' : 'no-key'}" style="margin-top:6px;">🔗 Base URL: ${url}</div>`;
+        container.innerHTML = html;
+    }
+
+    // ===== CONNECTION STATUS =====
+    function updateConnectionStatus(status) {
+        statusDot.className = 'status-dot';
+        switch (status) {
+            case 'ready':
+                statusText.textContent = 'Siap';
+                break;
+            case 'connecting':
+                statusDot.classList.add('connecting');
+                statusText.textContent = 'Memproses...';
+                break;
+            case 'no-key':
+                statusDot.classList.add('disconnected');
+                statusText.textContent = 'No API Key';
+                break;
+            case 'error':
+                statusDot.classList.add('disconnected');
+                statusText.textContent = 'Error';
+                break;
+        }
+    }
+
+    // ===== INPUT MANAGEMENT =====
+    function enableInput() {
+        messageInput.disabled = false;
+        btnSend.disabled = false;
+        messageInput.focus();
+    }
+
+    function disableInput() {
+        messageInput.disabled = true;
+        btnSend.disabled = true;
+    }
+
+    // ===== CHAT FUNCTIONS =====
+    function hideWelcome() {
+        if (welcomeState) {
+            welcomeState.style.display = 'none';
+        }
+    }
+
+    function addMessage(text, sender, isMarkdown = false) {
+        const wrapper = document.createElement('div');
+        wrapper.className = `message-wrapper ${sender}`;
+
+        const now = new Date();
+        const timeStr = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+
+        if (sender === 'system') {
+            wrapper.innerHTML = `
+                <div class="msg-content">
+                    <div class="msg-bubble">${formatMessage(text)}</div>
+                </div>
+            `;
+        } else if (sender === 'ai') {
+            const formattedText = isMarkdown ? renderMarkdown(text) : formatMessage(text);
+            wrapper.innerHTML = `
+                <div class="msg-avatar ai">🤖</div>
+                <div class="msg-content">
+                    <div class="msg-bubble">${formattedText}</div>
+                    <div class="msg-time">${timeStr}</div>
+                </div>
+            `;
+        } else {
+            wrapper.innerHTML = `
+                <div class="msg-avatar user">👤</div>
+                <div class="msg-content">
+                    <div class="msg-bubble">${escapeHtml(text)}</div>
+                    <div class="msg-time">${timeStr}</div>
+                </div>
+            `;
+        }
+
+        chatMessages.appendChild(wrapper);
+        scrollToBottom();
+    }
+
+    function formatMessage(text) {
+        let html = escapeHtml(text);
+        // Bold
+        html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        // Italic
+        html = html.replace(/_(.*?)_/g, '<em>$1</em>');
+        // Inline code
+        html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+        // Line breaks into paragraphs
+        html = html.replace(/\n\n/g, '</p><p>');
+        html = html.replace(/\n/g, '<br>');
+        html = '<p>' + html + '</p>';
+        html = html.replace(/<p><\/p>/g, '');
+        return html;
+    }
+
+    function renderMarkdown(text) {
+        // More complete markdown rendering for AI responses with tables
+        let html = text;
+
+        // Escape HTML first but preserve markdown syntax
+        html = html.replace(/&/g, '&amp;');
+        html = html.replace(/</g, '&lt;');
+        html = html.replace(/>/g, '&gt;');
+
+        // Headers
+        html = html.replace(/^### (.*$)/gm, '<h4 style="color:var(--accent-light);margin:12px 0 6px;">$1</h4>');
+        html = html.replace(/^## (.*$)/gm, '<h3 style="color:var(--accent-light);margin:14px 0 8px;">$1</h3>');
+        html = html.replace(/^# (.*$)/gm, '<h2 style="color:var(--accent-light);margin:16px 0 10px;">$1</h2>');
+
+        // Bold & Italic
+        html = html.replace(/\*\*\*(.*?)\*\*\*/g, '<strong><em>$1</em></strong>');
+        html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+
+        // Inline code
+        html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+
+        // Tables
+        html = renderMarkdownTable(html);
+
+        // Bullet lists
+        html = html.replace(/^[-•]\s+(.+)/gm, '<li>$1</li>');
+        html = html.replace(/(<li>.*<\/li>\n?)+/g, '<ul>$&</ul>');
+
+        // Numbered lists
+        html = html.replace(/^\d+\.\s+(.+)/gm, '<li>$1</li>');
+
+        // Line breaks
+        html = html.replace(/\n\n/g, '</p><p>');
+        html = html.replace(/\n/g, '<br>');
+
+        // Wrap in paragraph
+        if (!html.startsWith('<')) {
+            html = '<p>' + html + '</p>';
+        }
+
+        // Clean up
+        html = html.replace(/<p><\/p>/g, '');
+        html = html.replace(/<p>(<h[234])/g, '$1');
+        html = html.replace(/(<\/h[234]>)<\/p>/g, '$1');
+        html = html.replace(/<p>(<table)/g, '$1');
+        html = html.replace(/(<\/table>)<\/p>/g, '$1');
+        html = html.replace(/<p>(<ul)/g, '$1');
+        html = html.replace(/(<\/ul>)<\/p>/g, '$1');
+
+        return html;
+    }
+
+    function renderMarkdownTable(text) {
+        const lines = text.split('\n');
+        let result = [];
+        let inTable = false;
+        let tableRows = [];
+
+        for (let i = 0; i < lines.length; i++) {
+            const line = lines[i].trim();
+
+            if (line.startsWith('|') && line.endsWith('|')) {
+                // Check if this is a separator row
+                if (/^\|[\s\-:|]+\|$/.test(line)) {
+                    continue; // skip separator
+                }
+
+                const cells = line.split('|').filter((_, idx, arr) => idx > 0 && idx < arr.length - 1).map(c => c.trim());
+
+                if (!inTable) {
+                    inTable = true;
+                    tableRows = [];
+                    // This is the header
+                    const headerHtml = cells.map(c => `<th>${c}</th>`).join('');
+                    tableRows.push(`<thead><tr>${headerHtml}</tr></thead>`);
+                    tableRows.push('<tbody>');
+                } else {
+                    const cellsHtml = cells.map((c, idx) => {
+                        // Highlight IPK column (usually 4th or 5th column)
+                        const ipkMatch = c.match(/^(\d\.\d{1,2})$/);
+                        if (ipkMatch && parseFloat(c) >= 3.0) {
+                            return `<td><span class="ipk-highlight">${c}</span></td>`;
+                        }
+                        return `<td>${c}</td>`;
+                    }).join('');
+                    tableRows.push(`<tr>${cellsHtml}</tr>`);
+                }
+            } else {
+                if (inTable) {
+                    tableRows.push('</tbody>');
+                    result.push('<table>' + tableRows.join('') + '</table>');
+                    inTable = false;
+                    tableRows = [];
+                }
+                result.push(line);
+            }
+        }
+
+        if (inTable) {
+            tableRows.push('</tbody>');
+            result.push('<table>' + tableRows.join('') + '</table>');
+        }
+
+        return result.join('\n');
+    }
+
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    // ===== SUGGESTION CHIPS =====
+    function showSuggestionChips(suggestions) {
+        removeSuggestionChips();
+        const container = document.createElement('div');
+        container.className = 'inline-chips';
+        container.id = 'suggestionChips';
+
+        suggestions.forEach(s => {
+            const chip = document.createElement('button');
+            chip.className = 'inline-chip';
+            chip.textContent = s;
+            chip.onclick = () => {
+                messageInput.value = s;
+                sendMessage();
+            };
+            container.appendChild(chip);
+        });
+
+        chatMessages.appendChild(container);
+        scrollToBottom();
+    }
+
+    function removeSuggestionChips() {
+        const existing = document.getElementById('suggestionChips');
+        if (existing) existing.remove();
+    }
+
+    // ===== TYPING INDICATOR =====
+    function showTypingIndicator() {
+        const el = document.createElement('div');
+        el.className = 'typing-indicator-wrapper';
+        el.id = 'typingIndicator';
+        el.innerHTML = `
+            <div class="msg-avatar ai">🤖</div>
+            <div class="typing-bubble">
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+            </div>
+        `;
+        chatMessages.appendChild(el);
+        scrollToBottom();
+    }
+
+    function hideTypingIndicator() {
+        const el = document.getElementById('typingIndicator');
+        if (el) el.remove();
+    }
+
+    // ===== RESET CHAT =====
+    function resetChat() {
+        currentState = STATE.IDLE;
+        currentProfession = '';
+        currentJobDesc = '';
+        isProcessing = false;
+        conversationHistory = [];
+
+        // Clear messages but keep welcome state
+        chatMessages.innerHTML = '';
+        chatMessages.appendChild(createWelcomeState());
+        welcomeState.style.display = '';
+
+        disableInput();
+        messageInput.value = '';
+        removeSuggestionChips();
+    }
+
+    function createWelcomeState() {
+        const ws = document.createElement('div');
+        ws.className = 'welcome-state';
+        ws.id = 'welcomeState';
+        ws.innerHTML = `
+            <div class="welcome-avatar">🤖</div>
+            <h1 class="welcome-title">Zyvanta AI — Talent Matching</h1>
+            <p class="welcome-subtitle">Asisten cerdas untuk mencocokkan mahasiswa Data Science dengan posisi magang yang sesuai. Saya akan memandu Anda langkah demi langkah.</p>
+            <div class="welcome-features">
+                <div class="welcome-feature"><span class="feat-icon">🎯</span> Pencarian Terarah</div>
+                <div class="welcome-feature"><span class="feat-icon">📊</span> Data Mahasiswa Real-time</div>
+                <div class="welcome-feature"><span class="feat-icon">🧠</span> AI-Powered Matching</div>
+                <div class="welcome-feature"><span class="feat-icon">📋</span> Hasil Terstruktur</div>
+            </div>
+            <button class="start-btn" onclick="startConversation()">🚀 Mulai Pencarian Talent</button>
+        `;
+        return ws;
+    }
+
+    // ===== UTILITIES =====
+    function scrollToBottom() {
+        requestAnimationFrame(() => {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        });
+    }
+
+    function handleKeyDown(e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            sendMessage();
+        }
+    }
+
+    function autoResize(el) {
+        el.style.height = 'auto';
+        el.style.height = Math.min(el.scrollHeight, 120) + 'px';
+    }
+
+    // Close modal on overlay click
+    document.getElementById('settingsModal').addEventListener('click', function(e) {
+        if (e.target === this) closeSettingsModal();
+    });
+
+    // Close modal on Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeSettingsModal();
+    });
+
+    // Init
+    init();
+    </script>
+</body>
+</html>

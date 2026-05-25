@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Zyvanta — Dashboard Mahasiswa & Kurikulum">
+    <title>Zyvanta — Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-brand" onclick="navigateTo('dashboard')">
+                <img src="zyvanta_logo.png" alt="Zyvanta" class="brand-logo">
+                <span><span class="brand-hl">Zyvanta</span></span>
+            </a>
+            <a href="index.html" class="nav-back" title="Kembali ke Beranda">← Beranda</a>
+            <div class="nav-links">
+                <a href="#" class="nav-link active" id="nav-dashboard" onclick="navigateTo('dashboard')">🏠 Dashboard</a>
+                <a href="#" class="nav-link" id="nav-semester" onclick="navigateTo('semester')">📚 Kurikulum</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="breadcrumb-bar" id="breadcrumb"><div class="container"><a href="#" onclick="navigateTo('dashboard')">Dashboard</a></div></div>
+
+    <div class="loading-overlay" id="loadOverlay">
+        <div class="spinner"></div>
+        <p>Memuat data...</p>
+    </div>
+
+    <!-- DASHBOARD PAGE -->
+    <main class="page active" id="page-dashboard">
+        <div class="container">
+            <section class="hero">
+                <h1>Dashboard <span class="gtext">Mahasiswa</span></h1>
+                <p class="subtitle">Program Studi Data Science — Kelola dan pantau data mahasiswa</p>
+                <div class="stats-row" id="heroStats">
+                    <div class="stat-card"><span class="stat-num" id="statTotal">0</span><span class="stat-lbl">Total</span></div>
+                    <div class="stat-card"><span class="stat-num" id="statKelas">0</span><span class="stat-lbl">Kelas</span></div>
+                    <div class="stat-card"><span class="stat-num" id="statFiltered">0</span><span class="stat-lbl">Ditampilkan</span></div>
+                </div>
+            </section>
+            <section class="refresh-bar" id="refreshBar">
+                <div class="refresh-info">
+                    <span class="refresh-dot" id="refreshIndicator"></span>
+                    <span>Auto-refresh aktif · Terakhir diperbarui: <strong id="lastRefreshTime">—</strong></span>
+                </div>
+                <button class="btn-refresh" id="refreshBtn" onclick="manualRefresh()" title="Muat ulang data sekarang">
+                    <span class="refresh-icon">↻</span> Refresh Data
+                </button>
+            </section>
+
+            <section class="card filter-section">
+                <div class="filter-head"><h2>🔍 Filter Data</h2><button class="btn-reset" onclick="resetFilters()">↻ Reset</button></div>
+                <div class="filter-grid filter-grid-6">
+                    <div class="fg"><label>Angkatan</label><select id="filterAngkatan" onchange="applyFilters()"><option value="">Semua</option></select></div>
+                    <div class="fg"><label>Semester</label><select id="filterSemester" onchange="applyFilters()"><option value="">Semua</option></select></div>
+                    <div class="fg">
+                        <label>Kelas</label>
+                        <div class="checklist-dropdown" id="kelasDropdown">
+                            <button type="button" class="checklist-trigger" id="kelasTrigger" onclick="toggleKelasDropdown()">
+                                <span class="checklist-label" id="kelasLabel">Semua Kelas</span>
+                                <span class="checklist-arrow">▾</span>
+                            </button>
+                            <div class="checklist-panel" id="kelasPanel">
+                                <div class="checklist-actions">
+                                    <button type="button" onclick="selectAllKelas(true)">✓ Pilih Semua</button>
+                                    <button type="button" onclick="selectAllKelas(false)">✕ Hapus Semua</button>
+                                </div>
+                                <div class="checklist-items" id="kelasItems"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fg"><label>Jumlah Magang</label><select id="filterMagang" onchange="applyFilters()"><option value="">Semua</option><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value=">3">&gt; 3</option></select></div>
+                    <div class="fg"><label>Rentang IPK</label><select id="filterIPK" onchange="applyFilters()"><option value="">Semua</option><option value="0-2">0 — 2.0</option><option value="2.1-2.5">2.1 — 2.5</option><option value="2.6-3">2.6 — 3.0</option><option value="3.1-3.5">3.1 — 3.5</option><option value="3.6-4">3.6 — 4.0</option></select></div>
+                    <div class="fg"><label>Cari Nama</label><input type="text" id="filterSearch" placeholder="Ketik nama..." oninput="applyFilters()"></div>
+                </div>
+            </section>
+            <section class="card">
+                <div class="filter-head"><h2>📋 Daftar Mahasiswa</h2><span class="badge" id="resultCount">0</span></div>
+                <div class="table-wrap">
+                    <table class="dtable" id="studentTable">
+                        <thead><tr><th>No</th><th>NIM</th><th>Nama</th><th>Angkatan</th><th>Semester</th><th>Kelas</th><th>IPK</th><th>Magang</th><th>Portfolio</th></tr></thead>
+                        <tbody id="studentBody"></tbody>
+                    </table>
+                    <div class="empty" id="emptyState" style="display:none"><span>🔍</span><p>Tidak ada data ditemukan</p></div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- SEMESTER PAGE -->
+    <main class="page" id="page-semester">
+        <div class="container">
+            <section class="hero">
+                <h1>Kurikulum <span class="gtext">Data Science</span></h1>
+                <p class="subtitle">8 Semester + 2 Short Semester — 152 SKS — Diselaraskan dengan CDC</p>
+            </section>
+            <section class="semester-grid" id="semesterGrid"></section>
+        </div>
+    </main>
+
+    <!-- COURSE PAGE -->
+    <main class="page" id="page-course">
+        <div class="container">
+            <section class="hero">
+                <h1 id="courseTitle">Mata Kuliah</h1>
+                <p class="subtitle" id="courseSub">Portfolio mahasiswa</p>
+                <div class="stats-row"><div class="stat-card"><span class="stat-num" id="statPortfolio">0</span><span class="stat-lbl">Portfolio</span></div></div>
+            </section>
+            <section class="card">
+                <div class="filter-head"><h2>🎓 Portfolio Mahasiswa</h2><span class="badge" id="portfolioCount">0</span></div>
+                <div class="table-wrap">
+                    <table class="dtable" id="portfolioTable">
+                        <thead><tr><th>No</th><th>NIM</th><th>Nama</th><th>Portfolio UTS</th><th>Portfolio UAS</th></tr></thead>
+                        <tbody id="portfolioBody"></tbody>
+                    </table>
+                    <div class="empty" id="portfolioEmpty" style="display:none"><span>📂</span><p>Belum ada data portfolio</p></div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- STUDENT PORTFOLIO MODAL -->
+    <div class="modal-overlay" id="portfolioModal" onclick="closePortfolioModal(event)">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closePortfolioModal(event, true)" title="Tutup">✕</button>
+            <div class="modal-header">
+                <div class="modal-avatar" id="modalAvatar">👤</div>
+                <div>
+                    <h2 id="modalStudentName">Nama Mahasiswa</h2>
+                    <p class="modal-subtitle" id="modalStudentNIM">NIM</p>
+                </div>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Portfolio content injected here -->
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer"><div class="container"><p>&copy; 2026 Zyvanta — Program Studi Data Science</p></div></footer>
+
+    <script src="curriculum_data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

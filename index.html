@@ -3,119 +3,464 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio Data Science - Dashboard Mahasiswa & Kurikulum">
-    <title>Portfolio Data Science</title>
+    <meta name="description" content="Zyvanta — Platform Pencocokan Magang Mahasiswa Data Science">
+    <title>Zyvanta</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+    <style>
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0a0e1a;
+            color: #e2e8f0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* ===== ANIMATED BACKGROUND ORBS ===== */
+        .bg-orbs {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.35;
+            will-change: transform;
+        }
+
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, #6366f1 0%, transparent 70%);
+            top: -10%;
+            left: -8%;
+            animation: orbFloat1 18s ease-in-out infinite;
+        }
+
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #06b6d4 0%, transparent 70%);
+            bottom: -5%;
+            right: -5%;
+            animation: orbFloat2 22s ease-in-out infinite;
+        }
+
+        .orb-3 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, #8b5cf6 0%, transparent 70%);
+            top: 50%;
+            left: 55%;
+            transform: translate(-50%, -50%);
+            animation: orbFloat3 15s ease-in-out infinite;
+        }
+
+        .orb-4 {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, #10b981 0%, transparent 70%);
+            top: 20%;
+            right: 15%;
+            animation: orbFloat4 20s ease-in-out infinite;
+        }
+
+        .orb-5 {
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, #f59e0b 0%, transparent 70%);
+            bottom: 25%;
+            left: 10%;
+            opacity: 0.2;
+            animation: orbFloat5 25s ease-in-out infinite;
+        }
+
+        @keyframes orbFloat1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(60px, 40px) scale(1.1); }
+            50% { transform: translate(30px, 80px) scale(0.95); }
+            75% { transform: translate(-20px, 50px) scale(1.05); }
+        }
+
+        @keyframes orbFloat2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(-50px, -30px) scale(1.05); }
+            50% { transform: translate(-70px, -60px) scale(1.1); }
+            75% { transform: translate(-30px, -40px) scale(0.95); }
+        }
+
+        @keyframes orbFloat3 {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            33% { transform: translate(-40%, -60%) scale(1.15); }
+            66% { transform: translate(-60%, -45%) scale(0.9); }
+        }
+
+        @keyframes orbFloat4 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-40px, 50px) scale(1.1); }
+        }
+
+        @keyframes orbFloat5 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            30% { transform: translate(30px, -40px) scale(1.08); }
+            60% { transform: translate(-20px, -20px) scale(0.92); }
+        }
+
+        /* ===== NOISE TEXTURE OVERLAY ===== */
+        .bg-orbs::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        .landing-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+        }
+
+        /* ===== APP ICON ===== */
+        .app-icon {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 1rem;
+            display: inline-block;
+            animation: iconPulse 3s ease-in-out infinite, fadeSlideUp 0.8s ease-out both;
+            border-radius: 20px;
+            object-fit: contain;
+        }
+
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(99, 102, 241, 0.4)); }
+            50% { transform: scale(1.1); filter: drop-shadow(0 0 30px rgba(99, 102, 241, 0.7)); }
+        }
+
+        /* ===== APP TITLE ===== */
+        .app-title {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 0.75rem;
+            animation: fadeSlideUp 0.8s ease-out 0.15s both;
+        }
+
+        .app-title .gtext {
+            background: linear-gradient(135deg, #6366f1 0%, #06b6d4 50%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ===== SUBTITLE ===== */
+        .app-subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            color: #94a3b8;
+            font-weight: 400;
+            text-align: center;
+            max-width: 560px;
+            margin-bottom: 3.5rem;
+            line-height: 1.6;
+            animation: fadeSlideUp 0.8s ease-out 0.3s both;
+        }
+
+        /* ===== CARDS GRID ===== */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            width: 100%;
+            max-width: 780px;
+        }
+
+        /* ===== OPTION CARD ===== */
+        .option-card {
+            position: relative;
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-decoration: none;
+            color: #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+            cursor: pointer;
+            overflow: hidden;
+
+            /* Glassmorphism */
+            background: rgba(15, 20, 40, 0.55);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Gradient border effect using pseudo-element */
+        .option-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            padding: 1.5px;
+            background: var(--card-gradient);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0.5;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        /* Inner glow on hover */
+        .option-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            background: var(--card-glow);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .option-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--card-shadow);
+        }
+
+        .option-card:hover::before {
+            opacity: 1;
+        }
+
+        .option-card:hover::after {
+            opacity: 1;
+        }
+
+        /* Card 1 - Manual Match (Indigo → Purple) */
+        .option-card--manual {
+            --card-gradient: linear-gradient(135deg, #6366f1, #a855f7);
+            --card-glow: radial-gradient(ellipse at 50% 80%, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+            --card-shadow: 0 20px 60px -15px rgba(99, 102, 241, 0.35), 0 0 40px -10px rgba(99, 102, 241, 0.2);
+            animation: fadeSlideUp 0.8s ease-out 0.45s both;
+        }
+
+        /* Card 2 - AI Match (Cyan → Green) */
+        .option-card--ai {
+            --card-gradient: linear-gradient(135deg, #06b6d4, #10b981);
+            --card-glow: radial-gradient(ellipse at 50% 80%, rgba(6, 182, 212, 0.1) 0%, transparent 70%);
+            --card-shadow: 0 20px 60px -15px rgba(6, 182, 212, 0.35), 0 0 40px -10px rgba(6, 182, 212, 0.2);
+            animation: fadeSlideUp 0.8s ease-out 0.6s both;
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1.25rem;
+            display: inline-block;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .option-card:hover .card-icon {
+            transform: scale(1.15) translateY(-4px);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.01em;
+        }
+
+        .card-desc {
+            font-size: 0.925rem;
+            color: #94a3b8;
+            line-height: 1.65;
+            max-width: 280px;
+        }
+
+        .card-arrow {
+            margin-top: 1.5rem;
+            font-size: 1.25rem;
+            color: #475569;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .option-card:hover .card-arrow {
+            color: #e2e8f0;
+            transform: translateX(6px);
+        }
+
+        /* ===== ENTRANCE ANIMATION ===== */
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== FOOTER ===== */
+        .landing-footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 1.5rem 1rem;
+            color: #475569;
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 640px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                gap: 1.5rem;
+            }
+
+            .option-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .app-subtitle {
+                margin-bottom: 2.5rem;
+            }
+
+            .app-icon {
+                font-size: 3rem;
+            }
+        }
+
+        /* ===== STAR PARTICLES ===== */
+        .stars {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #fff;
+            border-radius: 50%;
+            opacity: 0;
+            animation: starTwinkle var(--dur) ease-in-out infinite;
+            animation-delay: var(--delay);
+        }
+
+        @keyframes starTwinkle {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 0.7; transform: scale(1); }
+        }
+
+        /* ===== SUBTLE GRID PATTERN ===== */
+        .grid-pattern {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background-image:
+                linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="#" class="nav-brand" onclick="navigateTo('dashboard')">
-                <span class="brand-icon">📊</span>
-                <span>Portfolio <span class="brand-hl">DS</span></span>
+
+    <!-- Background Effects -->
+    <div class="bg-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="orb orb-4"></div>
+        <div class="orb orb-5"></div>
+    </div>
+    <div class="grid-pattern"></div>
+    <div class="stars" id="stars"></div>
+
+    <!-- Main Content -->
+    <main class="landing-main">
+        <img src="zyvanta_logo.png" alt="Zyvanta Logo" class="app-icon">
+        <h1 class="app-title">
+            <span class="gtext">Zyvanta</span>
+        </h1>
+        <p class="app-subtitle">
+            Platform Pencocokan Magang Mahasiswa Data Science
+        </p>
+
+        <div class="cards-grid">
+            <!-- Card 1: Manual Match -->
+            <a href="dashboard.html" class="option-card option-card--manual">
+                <span class="card-icon">📊</span>
+                <h2 class="card-title">Manual Match</h2>
+                <p class="card-desc">Jelajahi dashboard mahasiswa, filter berdasarkan IPK, kelas, dan pengalaman magang secara manual</p>
+                <span class="card-arrow">→</span>
             </a>
-            <div class="nav-links">
-                <a href="#" class="nav-link active" id="nav-dashboard" onclick="navigateTo('dashboard')">🏠 Dashboard</a>
-                <a href="#" class="nav-link" id="nav-semester" onclick="navigateTo('semester')">📚 Kurikulum</a>
-            </div>
-        </div>
-    </nav>
 
-    <div class="breadcrumb-bar" id="breadcrumb"><div class="container"><a href="#" onclick="navigateTo('dashboard')">Dashboard</a></div></div>
-
-    <div class="loading-overlay" id="loadOverlay">
-        <div class="spinner"></div>
-        <p>Memuat data...</p>
-    </div>
-
-    <!-- DASHBOARD PAGE -->
-    <main class="page active" id="page-dashboard">
-        <div class="container">
-            <section class="hero">
-                <h1>Dashboard <span class="gtext">Mahasiswa</span></h1>
-                <p class="subtitle">Program Studi Data Science — Kelola dan pantau data mahasiswa</p>
-                <div class="stats-row" id="heroStats">
-                    <div class="stat-card"><span class="stat-num" id="statTotal">0</span><span class="stat-lbl">Total</span></div>
-                    <div class="stat-card"><span class="stat-num" id="statKelas">0</span><span class="stat-lbl">Kelas</span></div>
-                    <div class="stat-card"><span class="stat-num" id="statFiltered">0</span><span class="stat-lbl">Ditampilkan</span></div>
-                </div>
-            </section>
-            <section class="card filter-section">
-                <div class="filter-head"><h2>🔍 Filter Data</h2><button class="btn-reset" onclick="resetFilters()">↻ Reset</button></div>
-                <div class="filter-grid">
-                    <div class="fg"><label>Angkatan</label><select id="filterAngkatan" onchange="applyFilters()"><option value="">Semua</option></select></div>
-                    <div class="fg"><label>Semester</label><select id="filterSemester" onchange="applyFilters()"><option value="">Semua</option></select></div>
-                    <div class="fg"><label>Kelas</label><select id="filterKelas" onchange="applyFilters()"><option value="">Semua</option></select></div>
-                    <div class="fg"><label>Cari Nama</label><input type="text" id="filterSearch" placeholder="Ketik nama..." oninput="applyFilters()"></div>
-                </div>
-            </section>
-            <section class="card">
-                <div class="filter-head"><h2>📋 Daftar Mahasiswa</h2><span class="badge" id="resultCount">0</span></div>
-                <div class="table-wrap">
-                    <table class="dtable" id="studentTable">
-                        <thead><tr><th>No</th><th>NIM</th><th>Nama</th><th>Angkatan</th><th>Semester</th><th>Kelas</th><th>Portfolio</th></tr></thead>
-                        <tbody id="studentBody"></tbody>
-                    </table>
-                    <div class="empty" id="emptyState" style="display:none"><span>🔍</span><p>Tidak ada data ditemukan</p></div>
-                </div>
-            </section>
+            <!-- Card 2: AI Match -->
+            <a href="ai-chat.html" class="option-card option-card--ai">
+                <span class="card-icon">🤖</span>
+                <h2 class="card-title">AI Match</h2>
+                <p class="card-desc">Gunakan kecerdasan buatan untuk mencocokkan mahasiswa dengan posisi magang secara otomatis</p>
+                <span class="card-arrow">→</span>
+            </a>
         </div>
     </main>
 
-    <!-- SEMESTER PAGE -->
-    <main class="page" id="page-semester">
-        <div class="container">
-            <section class="hero">
-                <h1>Kurikulum <span class="gtext">Data Science</span></h1>
-                <p class="subtitle">8 Semester + 2 Short Semester — 152 SKS — Diselaraskan dengan CDC</p>
-            </section>
-            <section class="semester-grid" id="semesterGrid"></section>
-        </div>
-    </main>
+    <!-- Footer -->
+    <footer class="landing-footer">
+        <p>&copy; 2026 Zyvanta — Program Studi Data Science</p>
+    </footer>
 
-    <!-- COURSE PAGE -->
-    <main class="page" id="page-course">
-        <div class="container">
-            <section class="hero">
-                <h1 id="courseTitle">Mata Kuliah</h1>
-                <p class="subtitle" id="courseSub">Portfolio mahasiswa</p>
-                <div class="stats-row"><div class="stat-card"><span class="stat-num" id="statPortfolio">0</span><span class="stat-lbl">Portfolio</span></div></div>
-            </section>
-            <section class="card">
-                <div class="filter-head"><h2>🎓 Portfolio Mahasiswa</h2><span class="badge" id="portfolioCount">0</span></div>
-                <div class="table-wrap">
-                    <table class="dtable" id="portfolioTable">
-                        <thead><tr><th>No</th><th>NIM</th><th>Nama</th><th>Portfolio UTS</th><th>Portfolio UAS</th></tr></thead>
-                        <tbody id="portfolioBody"></tbody>
-                    </table>
-                    <div class="empty" id="portfolioEmpty" style="display:none"><span>📂</span><p>Belum ada data portfolio</p></div>
-                </div>
-            </section>
-        </div>
-    </main>
-
-    <!-- STUDENT PORTFOLIO MODAL -->
-    <div class="modal-overlay" id="portfolioModal" onclick="closePortfolioModal(event)">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closePortfolioModal(event, true)" title="Tutup">✕</button>
-            <div class="modal-header">
-                <div class="modal-avatar" id="modalAvatar">👤</div>
-                <div>
-                    <h2 id="modalStudentName">Nama Mahasiswa</h2>
-                    <p class="modal-subtitle" id="modalStudentNIM">NIM</p>
-                </div>
-            </div>
-            <div class="modal-body" id="modalBody">
-                <!-- Portfolio content injected here -->
-            </div>
-        </div>
-    </div>
-
-    <footer class="footer"><div class="container"><p>&copy; 2026 Program Studi Data Science</p></div></footer>
-
-    <script src="curriculum_data.js"></script>
-    <script src="app.js"></script>
+    <!-- Star Particles Generator -->
+    <script>
+        (function() {
+            const container = document.getElementById('stars');
+            const count = 50;
+            for (let i = 0; i < count; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.setProperty('--dur', (3 + Math.random() * 5) + 's');
+                star.style.setProperty('--delay', (Math.random() * 5) + 's');
+                star.style.width = star.style.height = (1 + Math.random() * 2) + 'px';
+                container.appendChild(star);
+            }
+        })();
+    </script>
 </body>
 </html>
